@@ -1,0 +1,10 @@
+.input-error{
+    border-bottom: 0.5px solid !important;
+    border-color: red !important;
+}
+.text-error{
+    color: red;
+    font-size: 12px;
+    margin-top: 0;
+    padding-top: 0.2em;
+}

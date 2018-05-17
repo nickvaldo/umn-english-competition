@@ -21,7 +21,7 @@ Route::get('/login', 'participantController@viewLogin')->name('loginPage');
 Route::get('/admin', function(){
     return redirect()->route('adminLoginPage');
 });
-Route::get('/admin/login', 'adminController@viewLogin')->name('adminLoginPage'); 
+Route::get('/admin/login', 'Admin\adminController@viewLogin')->name('adminLoginPage'); 
 
 /*
 Route::get('/', function () {
