@@ -18,10 +18,15 @@ Route::get('/', function(){
 Route::get('/login', 'participantController@viewLogin')->name('loginPage');
 
 /* ADMIN */
-Route::get('/admin', function(){
-    return redirect()->route('adminLoginPage');
+Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');
+Route::post('/admin/login', 'Admin\AuthController@LoginProcess')->name('admin_login');
+Route::middleware('admin_gate:admin')->group(function() {
+    Route::get('/admin', function(){
+        return redirect()->route('admin_dashboard');// redirect harusnya ke homepage
+    });
+    Route::get('/admin/index', 'Admin\DashboardController@DashboardView')->name('admin_dashboard');
 });
-Route::get('/admin/login', 'Admin\adminController@viewLogin')->name('adminLoginPage'); 
+
 
 /*
 Route::get('/', function () {

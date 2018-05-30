@@ -19,6 +19,8 @@ Artisan::command('inspire', function () {
 
 Artisan::command('seedingDatabase', function () {
     /* SEEDING DATABASE */
+    // Admin Table
+    factory(App\Http\Model\Admin\AdminModel::class)->create();
     // Periods Table
     factory(App\Http\Model\Admin\PeriodModel::class)->create([
       'year' => 2018
