@@ -23,6 +23,9 @@ Artisan::command('seedingDatabase', function () {
     factory(App\Http\Model\Admin\AdminModel::class)->create();
     // Periods Table
     factory(App\Http\Model\Admin\PeriodModel::class)->create([
+      'year' => 2017
+    ]);
+    factory(App\Http\Model\Admin\PeriodModel::class)->create([
       'year' => 2018
     ]);
     // Educational_Stages Table
@@ -34,7 +37,25 @@ Artisan::command('seedingDatabase', function () {
     ]);
     // Terms Table
     factory(App\Http\Model\Admin\TermModel::class)->create([
-      'period_id' => 1, // 2018
+      'period_id' => 1, // 2017
+      'educational_stage_id' => 1, // SMA/SMK
+      'term' => 'SMA/SMK PRE Elimination Test 2017',
+      'number_of_question' => 100,
+      'login_datetime' => date('Y-m-d 08:00:00'),
+      'test_datetime' => date('Y-m-d 09:00:00'),
+      'tolerance_datetime' => date('Y-m-d 11:00:00')
+    ]);
+    factory(App\Http\Model\Admin\TermModel::class)->create([
+      'period_id' => 1, // 2017
+      'educational_stage_id' => 2, // Universitas
+      'term' => 'Universitas PRE Elimination Test 2017',
+      'number_of_question' => 100,
+      'login_datetime' => date('Y-m-d 12:00:00'),
+      'test_datetime' => date('Y-m-d 13:00:00'),
+      'tolerance_datetime' => date('Y-m-d 15:00:00')
+    ]);
+    factory(App\Http\Model\Admin\TermModel::class)->create([
+      'period_id' => 2, // 2018
       'educational_stage_id' => 1, // SMA/SMK
       'term' => 'SMA/SMK PRE Elimination Test 2018',
       'number_of_question' => 100,
@@ -43,7 +64,7 @@ Artisan::command('seedingDatabase', function () {
       'tolerance_datetime' => date('Y-m-d 11:00:00')
     ]);
     factory(App\Http\Model\Admin\TermModel::class)->create([
-      'period_id' => 1, // 2018
+      'period_id' => 2, // 2018
       'educational_stage_id' => 2, // Universitas
       'term' => 'Universitas PRE Elimination Test 2018',
       'number_of_question' => 100,
