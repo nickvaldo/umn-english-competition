@@ -1,7 +1,7 @@
 @extends('layout.admin.master')
 @section('css')
 <!-- Menu CSS -->
-<link href="{{URL::to('admin-asset/bower_components/sidebar-nav/dist/sidebar-nav.min.css')}}" rel="stylesheet">
+<link href="{{URL::to('assets/admin/bower_components/sidebar-nav/dist/sidebar-nav.min.css')}}" rel="stylesheet">
 <style>
   .white-box.blue-box{
     margin: 0 !important;
@@ -29,8 +29,8 @@
 @endsection
 @section('dashboard_js')
 <!--Counter js -->
-<script src="{{URL::to('admin-asset/bower_components/waypoints/lib/jquery.waypoints.js')}}"></script>
-<script src="{{URL::to('admin-asset/bower_components/counterup/jquery.counterup.min.js')}}"></script>
+<script src="{{URL::to('assets/admin/bower_components/waypoints/lib/jquery.waypoints.js')}}"></script>
+<script src="{{URL::to('assets/admin/bower_components/counterup/jquery.counterup.min.js')}}"></script>
 @endsection
 @section('js')
 <script type="text/javascript">
@@ -54,11 +54,11 @@
             <!-- .row -->
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <a href="#" data-toggle="tooltip" data-original-title="Create New Term"><div class="white-box blue-box"><i class="fa fa-plus-circle"></i></div></a>
+                    <a href="{{URL::to('/admin/term/add')}}" data-toggle="tooltip" data-original-title="Create New Term"><div class="white-box blue-box"><i class="fa fa-plus-circle"></i></div></a>
                     <div class="white-box">
                         <h3 class="m-t-20 m-b-20">Want to create new term ?</h3>
                         <!--<p>Titudin venenatis ipsum ac feugiat. Vestibulum ullamcorper quam.</p>-->
-                        <button class="btn btn-success btn-rounded waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Create New Term">Click Here to Create New</button>
+                        <a href="{{URL::to('/admin/term/add')}}"><button class="btn btn-success btn-rounded waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Create New Term">Click Here to Create New</button></a>
                     </div>
                 </div>
                 @foreach ($terms as $index => $term)
@@ -76,7 +76,7 @@
                             </p>
                             <div class="row">
                                 <div class="col-sm-6"><a href="#"><button type="button" class="btn btn-info waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Show This Term" style="font-size: 1.5em; border-radius: 0.5em;"><i class="ti-eye" aria-hidden="true"></i></button></a></div>
-                                <div class="col-sm-6"><a href="#"><button type="button" class="btn btn-success waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Edit This Term" style="font-size: 1.5em; border-radius: 0.5em;"><i class="ti-marker-alt" aria-hidden="true"></i></button></a></div>
+                                <div class="col-sm-6"><a href="{{URL::to('/admin/term/edit/'.$term->period_id)}}"><button type="button" class="btn btn-success waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Edit This Term" style="font-size: 1.5em; border-radius: 0.5em;"><i class="ti-marker-alt" aria-hidden="true"></i></button></a></div>
                             </div>
                         </div>
                     </div>

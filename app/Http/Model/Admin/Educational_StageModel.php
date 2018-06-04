@@ -13,4 +13,9 @@ class Educational_StageModel extends Model
     public $timestamps = true; //DEFAULT : true (created_at & updated_at)
     const CREATED_AT = 'created_at'; //DEFAULT : created_at
     const UPDATED_AT = 'updated_at'; //DEFAULT : updated_at
+
+    // Retrieve All Education Stages Data
+    public static function SelectAllEducationalStages(){
+      return self::all();
+    }
 }
