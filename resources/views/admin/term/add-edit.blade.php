@@ -85,7 +85,7 @@
                                                 <hr class="m-t-0 m-b-20">
 
                                                 <div class="form-group <?php if($errors->has('sma_number_of_question')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Period</label>
+                                                    <label class="control-label col-md-3">Number of Question</label>
                                                     <div class="col-md-9">
                                                       <input type="number" class="form-control" name="sma_number_of_question" min="0" max="999" placeholder="Number of Question" value="@if(!empty((array)$sma)){{$sma->number_of_question}}@else{{old('sma_number_of_question')}}@endif">
                                                         <span class="help-block"> @if($errors->has('sma_number_of_question')) {{ $errors->first('sma_number_of_question') }} @endif</span>
@@ -125,7 +125,7 @@
                                                 <hr class="m-t-0 m-b-20">
 
                                                 <div class="form-group <?php if($errors->has('universitas_number_of_question')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Period</label>
+                                                    <label class="control-label col-md-3">Number of Question</label>
                                                     <div class="col-md-9">
                                                       <input type="number" class="form-control" name="universitas_number_of_question" min="0" max="999" placeholder="Number of Question" value="@if(!empty((array)$universitas)){{$universitas->number_of_question}}@else{{old('universitas_number_of_question')}}@endif">
                                                         <span class="help-block"> @if($errors->has('universitas_number_of_question')) {{ $errors->first('universitas_number_of_question') }} @endif</span>
