@@ -3,10 +3,9 @@
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <ul class="nav" id="side-menu">
             <li class="user-pro">
-                <a href="#" class="waves-effect"><i class="fa fa-user" style="margin-right: 0.7em"></i><span class="hide-menu"> {{Auth::user()['first_name']." ".Auth::user()['last_name']}}<span class="fa arrow"></span></span>
+                <a href="#" class="waves-effect"><i class="fa fa-user" style="margin-right: 0.7em"></i><span class="hide-menu">{{session('admin')['last_name']}}<span class="fa arrow"></span></span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{URL::to('/admin/emails')}}"><i class="ti-email"></i> Inbox</a></li>
                     <li><a href="{{URL::to('/admin/account_setting')}}"><i class="ti-settings"></i> Account Setting</a></li>
                     <li><a href="{{URL::to('/admin/logout')}}"><i class="fa fa-power-off"></i> Logout</a></li>
                 </ul>
