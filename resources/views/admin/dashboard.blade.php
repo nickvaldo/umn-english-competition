@@ -64,7 +64,7 @@
                 @foreach ($terms as $index => $term)
                     @php($educational_stages = explode(', ', $term->educational_stage))
                     <div class="col-lg-3 col-md-6">
-                        <a href="#" data-toggle="tooltip" data-original-title="Show This Term"><div class="white-box blue-box">{{ $term->period_year }}</div></a>
+                        <a href="{{URL::to('/admin/term/'.$term->period_id)}}" data-toggle="tooltip" data-original-title="Show This Term"><div class="white-box blue-box">{{ $term->period_year }}</div></a>
                         <div class="white-box">
                             <h3 class="m-t-20 m-b-20">Accounting Week {{ $term->period_year }}</h3>
                             <p>
@@ -75,7 +75,7 @@
                                 English Competition
                             </p>
                             <div class="row">
-                                <div class="col-sm-6"><a href="#"><button type="button" class="btn btn-info waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Show This Term" style="font-size: 1.5em; border-radius: 0.5em;"><i class="ti-eye" aria-hidden="true"></i></button></a></div>
+                                <div class="col-sm-6"><a href="{{URL::to('/admin/term/'.$term->period_id)}}"><button type="button" class="btn btn-info waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Show This Term" style="font-size: 1.5em; border-radius: 0.5em;"><i class="ti-eye" aria-hidden="true"></i></button></a></div>
                                 <div class="col-sm-6"><a href="{{URL::to('/admin/term/edit/'.$term->period_id)}}"><button type="button" class="btn btn-success waves-effect waves-light m-t-20" data-toggle="tooltip" data-original-title="Edit This Term" style="font-size: 1.5em; border-radius: 0.5em;"><i class="ti-marker-alt" aria-hidden="true"></i></button></a></div>
                             </div>
                         </div>
