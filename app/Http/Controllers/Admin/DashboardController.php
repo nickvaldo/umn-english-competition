@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 /* Load Model */
-use App\Http\Model\Admin\TermModel as Term;
 use App\Http\Model\Admin\Educational_StageModel as Educational_Stage;
 use App\Http\Model\Admin\PeriodModel as Period;
+use App\Http\Model\Admin\TermModel as Term;
 
 class DashboardController extends Controller
 {

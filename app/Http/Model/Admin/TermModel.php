@@ -15,6 +15,36 @@ class TermModel extends Model
     const CREATED_AT = 'created_at'; //DEFAULT : created_at
     const UPDATED_AT = 'updated_at'; //DEFAULT : updated_at
 
+    // Retrieve All Raw Terms Data
+    public static function SelectAllRawTerms(){
+      return self::select('periods.id as period_id',
+                          'periods.year as period_year',
+                          'educational_stages.id as educational_stage_id',
+                          'terms.created_at as term_created_at',
+                          'terms.updated_at as term_updated_at')
+              ->join('periods', 'terms.period_id', '=', 'periods.id')
+              ->join('educational_stages', 'terms.educational_stage_id', '=', 'educational_stages.id')
+              ->where('terms.deleted', FALSE)
+              ->where('periods.deleted', FALSE)
+              ->where('educational_stages.deleted', FALSE)
+              ->orderBy('terms.id','desc')->get();
+    }
+    // Retrieve Current Raw Term Data by Period Id
+    public static function SelectRawTermByPeriodID($period_id){
+      return self::select('periods.id as period_id',
+                          'terms.id as term_id',
+                          'periods.year as period_year',
+                          'educational_stages.id as educational_stage_id',
+                          'terms.created_at as term_created_at',
+                          'terms.updated_at as term_updated_at')
+              ->join('periods', 'terms.period_id', '=', 'periods.id')
+              ->join('educational_stages', 'terms.educational_stage_id', '=', 'educational_stages.id')
+              ->where('terms.deleted', FALSE)
+              ->where('periods.deleted', FALSE)
+              ->where('educational_stages.deleted', FALSE)
+              ->where('terms.period_id',$period_id)
+              ->orderBy('terms.id','desc')->get();
+    }
     // Retrieve All Terms Data
     public static function SelectAllTerms(){
       return self::select('periods.id as period_id',
@@ -44,7 +74,24 @@ class TermModel extends Model
               ->where('terms.deleted', FALSE)
               ->where('periods.deleted', FALSE)
               ->where('educational_stages.deleted', FALSE)
-              ->where('period_id',$period_id)
+              ->where('terms.period_id',$period_id)
+              ->groupBy('periods.id')
+              ->orderBy('terms.id','desc')->first();
+    }
+    // Retrieve Current Term Data by Term Id
+    public static function SelectTermByTermID($term_id){
+      return self::select('periods.id as period_id',
+                          'periods.year as period_year',
+                          'educational_stages.id as educational_stage_id',
+                          DB::raw('GROUP_CONCAT(educational_stages.educational_stage SEPARATOR ", ") as educational_stage'),
+                          'terms.created_at as term_created_at',
+                          'terms.updated_at as term_updated_at')
+              ->join('periods', 'terms.period_id', '=', 'periods.id')
+              ->join('educational_stages', 'terms.educational_stage_id', '=', 'educational_stages.id')
+              ->where('terms.deleted', FALSE)
+              ->where('periods.deleted', FALSE)
+              ->where('educational_stages.deleted', FALSE)
+              ->where('terms.id',$term_id)
               ->groupBy('periods.id')
               ->orderBy('terms.id','desc')->first();
     }

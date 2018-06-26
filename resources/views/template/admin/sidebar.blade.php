@@ -15,23 +15,23 @@
             @if(session()->has('selected_term'))
             <li class="nav-small-cap m-t-10">--- Accounting Week {{ session('selected_term')['term']->period_year }}</li>
                 <li> <a href="{{URL::to('/admin/term/'.session('selected_term')['period_id'])}}" class="waves-effect"><i class="fa fa-desktop" style="margin-right: 0.7em"></i> <span class="hide-menu"> Dashboard </span></a> </li>
-                @if(isset(session('selected_term')['universitas']))
+                @if(isset(session('selected_term')['universitas_term_id']))
                     <li class="nav-small-cap m-t-10">--- Universitas</li>
-                    <li> <a href="{{URL::to('/admin/questions')}}" class="waves-effect"><i class="fa fa-file-text-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Question </span></a> </li>
+                    <li> <a href="{{URL::to('/admin/questions/'.session('selected_term')['universitas_term_id'])}}" class="waves-effect"><i class="fa fa-file-text-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Question </span></a> </li>
                     <li> <a href="{{URL::to('/admin/participants')}}" class="waves-effect"><i class="fa fa-users" style="margin-right: 0.7em"></i> <span class="hide-menu"> Participants <span class="fa arrow"></span> <!--<span class="label label-rouded label-custom pull-right">4</span>--></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="{{URL::to('/admin/participants/institutions')}}"><i class="fa fa-university" style="margin-right: 0.7em"></i> Institutions</a> </li>
-                            <li> <a href="{{URL::to('/admin/participants/students')}}"><i class="fa fa-graduation-cap" style="margin-right: 0.7em"></i> Students</a> </li>
+                            <li> <a href="{{URL::to('/admin/participants/institutions/'.session('selected_term')['universitas_term_id'])}}"><i class="fa fa-university" style="margin-right: 0.7em"></i> Institutions</a> </li>
+                            <li> <a href="{{URL::to('/admin/participants/students/'.session('selected_term')['universitas_term_id'])}}"><i class="fa fa-graduation-cap" style="margin-right: 0.7em"></i> Students</a> </li>
                         </ul>
                     </li>
                 @endif
-                @if(isset(session('selected_term')['sma']))
+                @if(isset(session('selected_term')['sma_term_id']))
                     <li class="nav-small-cap m-t-10">--- SMA / SMK</li>
-                    <li> <a href="{{URL::to('/admin/questions')}}" class="waves-effect"><i class="fa fa-file-text-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Question </span></a> </li>
+                    <li> <a href="{{URL::to('/admin/questions/'.session('selected_term')['sma_term_id'])}}" class="waves-effect"><i class="fa fa-file-text-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Question </span></a> </li>
                     <li> <a href="{{URL::to('/admin/participants')}}" class="waves-effect"><i class="fa fa-users" style="margin-right: 0.7em"></i> <span class="hide-menu"> Participants <span class="fa arrow"></span> <!--<span class="label label-rouded label-custom pull-right">4</span>--></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="{{URL::to('/admin/participants/institutions')}}"><i class="fa fa-university" style="margin-right: 0.7em"></i> Institutions</a> </li>
-                            <li> <a href="{{URL::to('/admin/participants/students')}}"><i class="fa fa-graduation-cap" style="margin-right: 0.7em"></i> Students</a> </li>
+                            <li> <a href="{{URL::to('/admin/participants/institutions/'.session('selected_term')['sma_term_id'])}}"><i class="fa fa-university" style="margin-right: 0.7em"></i> Institutions</a> </li>
+                            <li> <a href="{{URL::to('/admin/participants/students/'.session('selected_term')['sma_term_id'])}}"><i class="fa fa-graduation-cap" style="margin-right: 0.7em"></i> Students</a> </li>
                         </ul>
                     </li>
                 @endif

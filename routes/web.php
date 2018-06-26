@@ -36,6 +36,10 @@ Route::middleware('admin_gate:admin')->group(function() {
     Route::get('/admin/term/edit/{period_id}', 'Admin\DashboardController@TermEditView')->name('admin_term_edit');
     Route::post('/admin/term/edit/{period_id}', 'Admin\DashboardController@TermEditProcess')->name('admin_term_edit_process');
     Route::get('/admin/term/{period_id}', 'Admin\TermController@TermDashboardView')->name('admin_term_dashboard');
+    /* Questions */
+    Route::get('/admin/questions/{term_id}', 'Admin\QuestionController@QuestionView')->name('admin_question');
+    /* Institutions */
+    /* Students */
 });
 
 
