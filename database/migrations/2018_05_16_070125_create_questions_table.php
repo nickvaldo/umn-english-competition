@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('term_id'); $table->foreign('term_id')->references('id')->on('terms');
             $table->unsignedInteger('educational_stage_id'); $table->foreign('educational_stage_id')->references('id')->on('educational_stages');
-            $table->string('question');
+            $table->text('question');
             $table->string('first_option');
             $table->string('second_option');
             $table->string('third_option');

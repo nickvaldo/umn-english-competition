@@ -18,4 +18,8 @@ class Educational_StageModel extends Model
     public static function SelectAllEducationalStages(){
       return self::all();
     }
+    // Retrieve Current Education Stages Data by Educational Stage Id
+    public static function SelectEducationalStagesByEducationalSTageID($educational_stage_id){
+      return self::where('id',$educational_stage_id)->first();
+    }
 }

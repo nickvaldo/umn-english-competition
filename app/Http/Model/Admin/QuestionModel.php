@@ -16,7 +16,20 @@ class QuestionModel extends Model
 
     // Retrieve Questions Data by Term Id
     public static function SelectQuestionByTermID($term_id){
-      return self::where('term_id',$term_id)->get();
+      return self::select('questions.id as question_id',
+                          'terms.term as term',
+                          'educational_stages.educational_stage as educational_stage',
+                          'questions.question as question',
+                          'questions.first_option as first_option',
+                          'questions.second_option as second_option',
+                          'questions.third_option as third_option',
+                          'questions.fourth_option as fourth_option',
+                          'questions.answer as answer',
+                          'questions.created_at as created_at',
+                          'questions.updated_at as updated_at')
+        ->join('terms', 'questions.term_id', '=', 'terms.id')
+        ->join('educational_stages', 'questions.educational_stage_id', '=', 'educational_stages.id')
+        ->where('term_id',$term_id)->get();
     }
     // NOT USED
     // Retrieve SMA/SMK Questions Data by Term Id
@@ -36,4 +49,17 @@ class QuestionModel extends Model
       return self::where('term_id',$term_id)->where('educational_stage_id', 2)->count();
     }
     // END NOT USED
+    // Create New Question Data
+    public static function InsertQuestion($term_id, $educational_stage_id, $question, $first_option, $second_option, $third_option, $fourth_option, $answer){
+      return self::create([
+        'term_id'               => $term_id,
+        'educational_stage_id'  => $educational_stage_id,
+        'question'              => $question,
+        'first_option'          => $first_option,
+        'second_option'         => $second_option,
+        'third_option'          => $third_option,
+        'fourth_option'         => $fourth_option,
+        'answer'                => $answer
+      ]);
+    }
 }

@@ -47,34 +47,35 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-                        <!--<label class="form-inline">Show
+                        <label class="form-inline">Show
                             <select id="demo-show-entries" class="form-control input-sm">
                                 <option value="5">5</option>
                                 <option value="10" selected>10</option>
                                 <option value="15">15</option>
                                 <option value="20">20</option>
-                            </select> entries </label>-->
+                            </select> entries </label>
                         <table id="demo-foo-addrow" class="table table-bordered toggle-circle table-hover" data-page-size="10">
                             <thead>
                                 <tr>
                                     <th data-hide = "all"> Term </th>
                                     <th data-hide = "all"> Educational Stage </th>
-                                    <th data-toggle = "true" width="40%"> Question </th>
+                                    <th data-toggle = "true" width="60%"> Question </th>
+                                    <th data-hide = "all"> Question </th>
                                     <th data-hide = "all"> First Option </th>
                                     <th data-hide = "all"> Second Option </th>
                                     <th data-hide = "all"> Third Option </th>
                                     <th data-hide = "all"> Fourth Option </th>
-                                    <th data-hide = "phone"> Correct Answer </th>
+                                    <th data-sort-ignore="true" data-hide = "phone" width="15%" class="text-center"> Correct Answer </th>
                                     <th data-hide = "phone, tablet"> Created Since </th>
                                     <th data-hide = "all"> Updated At </th>
-                                    <th data-sort-ignore="true" class="min-width"> Action </th>
+                                    <th data-sort-ignore="true" class="min-width" width="10%"> Action </th>
                                 </tr>
                             </thead>
                             <div class="form-inline padding-bottom-15">
                                 <div class="row">
                                     <div class="col-sm-6 m-b-20">
                                         <div class="form-group">
-                                            <a href="{{URL::to('/admin/question/add')}}">
+                                            <a href="{{URL::to('/admin/question/'.$term_id.'/add')}}">
                                                 <button class="form-control btn btn-outline btn-primary btn-sm" data-toggle="tooltip" data-original-title="Add"><i class="ti-plus" aria-hidden="true" style="margin-right:10px"></i>Add New Data</button>
                                             </a>
                                         </div>
@@ -89,14 +90,15 @@
                             <tbody>
                                  @foreach($questions as $question)
                                     <tr>
-                                        <td>{{ $question->term_id }}</td>
-                                        <td>{{ $question->educational_stage_id }}</td>
+                                        <td>{{ $question->term }}</td>
+                                        <td>{{ $question->educational_stage }}</td>
+                                        <td>{{ substr($question->question, 0, 100).'...' }}</td>
                                         <td>{{ $question->question }}</td>
                                         <td>{{ $question->first_option }}</td>
                                         <td>{{ $question->second_option }}</td>
                                         <td>{{ $question->third_option }}</td>
                                         <td>{{ $question->fourth_option }}</td>
-                                        <td>{{ $question->answer }}</td>
+                                        <td class="text-center">{{ $question->answer }}</td>
                                         <td>{{ $question->created_at }}</td>
                                         <td>{{ $question->updated_at }}</td>
                                         <td>

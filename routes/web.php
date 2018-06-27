@@ -38,6 +38,10 @@ Route::middleware('admin_gate:admin')->group(function() {
     Route::get('/admin/term/{period_id}', 'Admin\TermController@TermDashboardView')->name('admin_term_dashboard');
     /* Questions */
     Route::get('/admin/questions/{term_id}', 'Admin\QuestionController@QuestionView')->name('admin_question');
+    Route::get('/admin/question/{term_id}/add', 'Admin\QuestionController@QuestionAddView')->name('admin_question_add');
+    Route::post('/admin/question/{term_id}/add', 'Admin\QuestionController@QuestionAddProcess')->name('admin_question_add_process');
+    Route::get('/admin/question/{term_id}/edit/{question_id}', 'Admin\QuestionController@QuestionEditView')->name('admin_question_edit');
+    Route::post('/admin/question/{term_id}/edit/{question_id}', 'Admin\QuestionController@QuestionEditProcess')->name('admin_question_edit_process');
     /* Institutions */
     /* Students */
 });

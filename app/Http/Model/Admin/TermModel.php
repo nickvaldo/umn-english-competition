@@ -80,7 +80,9 @@ class TermModel extends Model
     }
     // Retrieve Current Term Data by Term Id
     public static function SelectTermByTermID($term_id){
-      return self::select('periods.id as period_id',
+      return self::select('terms.id as term_id',
+                          'terms.term as term',
+                          'periods.id as period_id',
                           'periods.year as period_year',
                           'educational_stages.id as educational_stage_id',
                           DB::raw('GROUP_CONCAT(educational_stages.educational_stage SEPARATOR ", ") as educational_stage'),
