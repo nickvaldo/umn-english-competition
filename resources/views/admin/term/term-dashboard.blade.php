@@ -97,7 +97,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table> <a href="#">View All Institutions</a>
+                            </table> <a href="{{URL::to('/admin/participants/institutions/'.session('selected_term')['universitas_term_id'])}}">View All Institutions</a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table> <a href="#">View All Institutions</a>
+                            </table> <a href="{{URL::to('/admin/participants/institutions/'.session('selected_term')['sma_term_id'])}}">View All Institutions</a>
                         </div>
                     </div>
                 </div>

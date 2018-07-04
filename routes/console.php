@@ -117,7 +117,7 @@ Artisan::command('seedingDatabase', function () {
       'first_option' => 'vILRU8UHZEhOflgWz9Yx',
       'second_option' => 'I0Z1a2GNt3UFZjcS5gSJ',
       'third_option' => 't53IFUP5zakjgMnQlKgu',
-      'forth_option' => 'k9zKUqJZi7QDQZtoZhvw'
+      'fourth_option' => 'k9zKUqJZi7QDQZtoZhvw'
     ]);
     factory(App\Http\Model\Admin\QuestionModel::class, 10)->create([
       'term_id' => 2, // Universitas PRE Elimination Test 2018
@@ -126,6 +126,6 @@ Artisan::command('seedingDatabase', function () {
       'first_option' => 'vILRU8UHZEhOflgWz9Yx',
       'second_option' => 'I0Z1a2GNt3UFZjcS5gSJ',
       'third_option' => 't53IFUP5zakjgMnQlKgu',
-      'forth_option' => 'k9zKUqJZi7QDQZtoZhvw'
+      'fourth_option' => 'k9zKUqJZi7QDQZtoZhvw'
     ]);
 })->describe('Seeding Database data');
