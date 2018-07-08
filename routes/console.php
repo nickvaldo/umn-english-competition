@@ -128,4 +128,26 @@ Artisan::command('seedingDatabase', function () {
       'third_option' => 't53IFUP5zakjgMnQlKgu',
       'fourth_option' => 'k9zKUqJZi7QDQZtoZhvw'
     ]);
+    // Title Table
+    factory(App\Http\Model\Admin\TitleModel::class)->create([
+      'title' => 'PRE Elimination Test Accounting Week 5'
+    ]);
+    // Rule Table
+    factory(App\Http\Model\Admin\RuleModel::class)->create([
+      'title' => 'PRE Elimination Test Accounting Week 5 Rule',
+      'description' => 'Default Rule'
+    ]);
+    // Logo Table
+    factory(App\Http\Model\Admin\LogoModel::class)->create([
+      'image' => 'assets/upload/logo/omzO7yZQbdg7sLeWVQu6Mu07yW2lQSLQnsvMLnva.png', // Logo UMN
+      'alternative_description' => 'Logo Universitas Multimedia Nusantara'
+    ]);
+    factory(App\Http\Model\Admin\LogoModel::class)->create([
+      'image' => 'assets/upload/logo/lNN5g8qCZMFowkJera3B78duSK2ZNH34FrTeKiAD.png', // Logo HIMTARA
+      'alternative_description' => 'Logo HIMTARA Universitas Multimedia Nusantara'
+    ]);
+    factory(App\Http\Model\Admin\LogoModel::class)->create([
+      'image' => 'assets/upload/logo/qFakzZjyVO43wXpXgUlzb2Zy1ZgeP7yy2fyPW7QU.jpeg', // Logo Accounting Week
+      'alternative_description' => 'Logo Accounting Week 2015 Universitas Multimedia Nusantara'
+    ]);
 })->describe('Seeding Database data');

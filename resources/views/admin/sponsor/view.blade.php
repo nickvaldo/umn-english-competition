@@ -32,14 +32,12 @@
             <div class="row bg-title">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <h4 class="page-title">
-                        <a href="{{URL::to('admin/term/'.$term->period_id)}}" style="font-size:1.5rem; margin-right:1.0rem"><i data-toggle="tooltip" data-original-title="Back to Terms Page" class="icon-arrow-left ti-menu"></i></a>
-                        Questions for {{ $term->educational_stage }}
+                        Sponsors for Accounting Week
                     </h4>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="{{URL::to('admin/term/'.$term->period_id)}}">Accounting Week {{ $term->period_year }}</a></li>
-                        <li class="active">Questions</li>
+                        <li class="active">Sponsors</li>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -57,25 +55,20 @@
                         <table id="demo-foo-addrow" class="table table-bordered toggle-circle table-hover" data-paging="true" data-page-size="10">
                             <thead>
                                 <tr>
-                                    <th data-toggle = "true" width="60%"> Question </th>
-                                    <th data-hide = "all"> Term </th>
-                                    <th data-hide = "all"> Educational Stage </th>
-                                    <th data-hide = "all"> Question </th>
-                                    <th data-hide = "all"> First Option </th>
-                                    <th data-hide = "all"> Second Option </th>
-                                    <th data-hide = "all"> Third Option </th>
-                                    <th data-hide = "all"> Fourth Option </th>
-                                    <th data-sort-ignore="true" data-hide = "phone" width="15%" class="text-center"> Correct Answer </th>
-                                    <th data-hide = "phone, tablet"> Created Since </th>
+                                    <th data-toggle = "true"> Image </th>
+                                    <th data-hide = "phone"> Title </th>
+                                    <th data-hide = "phone, tablet"> Description </th>
+                                    <th data-hide = "all"> Big Image </th>
+                                    <th data-hide = "all"> Created Since </th>
                                     <th data-hide = "all"> Updated At </th>
-                                    <th data-sort-ignore="true" class="min-width" width="10%"> Action </th>
+                                    <th data-sort-ignore="true" class="min-width"> Action </th>
                                 </tr>
                             </thead>
                             <div class="form-inline padding-bottom-15">
                                 <div class="row">
                                     <div class="col-sm-6 m-b-20">
                                         <div class="form-group">
-                                            <a href="{{URL::to('/admin/question/'.$term_id.'/add')}}">
+                                            <a href="{{URL::to('/admin/sponsor/add')}}">
                                                 <button class="form-control btn btn-outline btn-primary btn-sm" data-toggle="tooltip" data-original-title="Add"><i class="ti-plus" aria-hidden="true" style="margin-right:10px"></i>Add New Data</button>
                                             </a>
                                         </div>
@@ -88,25 +81,20 @@
                                 </div>
                             </div>
                             <tbody>
-                                 @foreach($questions as $question)
+                                 @foreach($slides as $slide)
                                     <tr>
-                                        <td>{{ substr($question->question, 0, 100).'...' }}</td>
-                                        <td>{{ $question->term }}</td>
-                                        <td>{{ $question->educational_stage }}</td>
-                                        <td>{{ $question->question }}</td>
-                                        <td>{{ $question->first_option }}</td>
-                                        <td>{{ $question->second_option }}</td>
-                                        <td>{{ $question->third_option }}</td>
-                                        <td>{{ $question->fourth_option }}</td>
-                                        <td class="text-center">{{ $question->answer }}</td>
-                                        <td>{{ date_format(date_create($question->created_at),"D, d M Y | h:i:s A") }}</td>
-                                        <td>{{ date_format(date_create($question->updated_at),"D, d M Y | h:i:s A") }}</td>
+                                        <td> <img class="img-responsive" style="display: inline-block; height: 4.0em" src="{{URL::to($slide->image)}}"> </td>
+                                        <td>{{ $slide->title }}</td>
+                                        <td>{{ $slide->description }}</td>
+                                        <td> <img class="img-responsive" style="width: 100rem" src="{{URL::to($slide->image)}}"> </td>
+                                        <td>{{ date_format(date_create($slide->created_at),"D, d M Y | h:i:s A") }}</td>
+                                        <td>{{ date_format(date_create($slide->updated_at),"D, d M Y | h:i:s A") }}</td>
                                         <td>
-                                            <a href="{{URL::to('/admin/question/'.$term_id.'/edit/'.$question->question_id)}}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Edit"><i class="ti-marker-alt" aria-hidden="true"></i></button></a>
-                                            <a id="sa-warning-{{$question->question_id}}" style="color:#337ab7"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button></a>
+                                            <a href="{{URL::to('/admin/sponsor/edit/'.$slide->id)}}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Edit"><i class="ti-marker-alt" aria-hidden="true"></i></button></a>
+                                            <a id="sa-warning-{{$slide->id}}" style="color:#337ab7"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button></a>
                                             <script>
                                                 //Warning Message
-                                                $('#sa-warning-{{$question->question_id}}').click(function(){
+                                                $('#sa-warning-{{$slide->id}}').click(function(){
                                                     swal({
                                                         title: "Are you sure?",
                                                         text: "You will not be able to recover this imaginary file!",
@@ -121,7 +109,7 @@
                                                             text: "Your imaginary file has been deleted.",
                                                             type: "success"
                                                         }, function() {*/
-                                                            window.location = "{{URL::to('/admin/question/'.$term_id.'/delete/'.$question->question_id)}}";
+                                                            window.location = "{{URL::to('/admin/sponsor/delete/'.$slide->id)}}";
                                                         /*});*/
                                                     });
                                                 });

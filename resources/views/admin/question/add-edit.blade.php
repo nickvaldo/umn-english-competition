@@ -108,7 +108,7 @@
                                                 </div>
                                                 <!--/span-->
                                                 <div class="form-group <?php if($errors->has('answer')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">City</label>
+                                                    <label class="control-label col-md-3">Answer</label>
                                                     <div class="col-md-9">
                                                         <select class="form-control" name="answer" data-placeholder="Choose a Category" tabindex="1">
                                                             @foreach($answer_enum as $value)

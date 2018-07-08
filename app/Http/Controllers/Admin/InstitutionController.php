@@ -95,7 +95,7 @@ class InstitutionController extends Controller
           'institution_address' => 'required',
           'points'              => 'required'
         ]);
-        // Insert New Institution Data
+        // Update Current Institution Data
         $institution = Institution::UpdateInstitution($request->term, $request->educational_stage, $request->username, Hash::make($request->password), $request->team_name, $request->institution_name, $request->institution_address, $request->points, $institution_id);
 
         // Check Whether Institution is Null or Not

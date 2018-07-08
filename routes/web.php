@@ -51,6 +51,34 @@ Route::middleware('admin_gate:admin')->group(function() {
     Route::post('/admin/participants/institution/{term_id}/edit/{institution_id}', 'Admin\InstitutionController@InstitutionEditProcess')->name('admin_institution_edit_process');
     Route::get('/admin/participants/institution/{term_id}/delete/{institution_id}', 'Admin\InstitutionController@InstitutionDeleteProcess')->name('admin_institution_delete_process');
     /* Students */
+    Route::get('/admin/participants/students/{term_id}', 'Admin\StudentController@StudentView')->name('admin_student');
+    Route::get('/admin/participants/student/{term_id}/add', 'Admin\StudentController@StudentAddView')->name('admin_student_add');
+    Route::post('/admin/participants/student/{term_id}/add', 'Admin\StudentController@StudentAddProcess')->name('admin_student_add_process');
+    Route::get('/admin/participants/student/{term_id}/edit/{student_id}', 'Admin\StudentController@StudentEditView')->name('admin_student_edit');
+    Route::post('/admin/participants/student/{term_id}/edit/{student_id}', 'Admin\StudentController@StudentEditProcess')->name('admin_student_edit_process');
+    Route::get('/admin/participants/student/{term_id}/delete/{student_id}', 'Admin\StudentController@StudentDeleteProcess')->name('admin_student_delete_process');
+    /* Logo */
+    Route::get('/admin/logos', 'Admin\LogoController@LogoView')->name('admin_logo');
+    Route::get('/admin/logo/add', 'Admin\LogoController@LogoAddView')->name('admin_logo_add');
+    Route::post('/admin/logo/add', 'Admin\LogoController@LogoAddProcess')->name('admin_logo_add_process');
+    Route::get('/admin/logo/edit/{logo_id}', 'Admin\LogoController@LogoEditView')->name('admin_logo_edit');
+    Route::post('/admin/logo/edit/{logo_id}', 'Admin\LogoController@LogoEditProcess')->name('admin_logo_edit_process');
+    Route::get('/admin/logo/delete/{logo_id}', 'Admin\LogoController@LogoDeleteProcess')->name('admin_logo_delete_procecss');
+    /* Sponsor */
+    Route::get('/admin/sponsors', 'Admin\SponsorController@SlideView')->name('admin_sponsor');
+    Route::get('/admin/sponsor/add', 'Admin\SponsorController@SlideAddView')->name('admin_sponsor_add');
+    Route::post('/admin/sponsor/add', 'Admin\SponsorController@SlideAddProcess')->name('admin_sponsor_add_process');
+    Route::get('/admin/sponsor/edit/{slide_id}', 'Admin\SponsorController@SlideEditView')->name('admin_sponsor_edit');
+    Route::post('/admin/sponsor/edit/{slide_id}', 'Admin\SponsorController@SlideEditProcess')->name('admin_sponsor_edit_process');
+    Route::get('/admin/sponsor/delete/{slide_id}', 'Admin\SponsorController@SlideDeleteProcess')->name('admin_sponsor_delete_procecss');
+    /* Title */
+    Route::get('/admin/title', 'Admin\TitleController@TitleView')->name('admin_title');
+    Route::get('/admin/title/edit/{title_id}', 'Admin\TitleController@TitleEditView')->name('admin_title_edit');
+    Route::post('/admin/title/edit/{title_id}', 'Admin\TitleController@TitleEditProcess')->name('admin_title_edit_process');
+    /* Rule */
+    Route::get('/admin/rule', 'Admin\RuleController@RuleView')->name('admin_rule');
+    Route::get('/admin/rule/edit/{rule_id}', 'Admin\RuleController@RuleEditView')->name('admin_rule_edit');
+    Route::post('/admin/rule/edit/{rule_id}', 'Admin\RuleController@RuleEditProcess')->name('admin_rule_edit_process');
 });
 
 

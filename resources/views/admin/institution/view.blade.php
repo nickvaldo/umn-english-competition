@@ -32,7 +32,7 @@
             <div class="row bg-title">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <h4 class="page-title">
-                        <a href="{{URL::to('admin/index')}}" style="font-size:1.5rem; margin-right:1.0rem"><i data-toggle="tooltip" data-original-title="Back to Terms Page" class="icon-arrow-left ti-menu"></i></a>
+                        <a href="{{URL::to('admin/term/'.$term->period_id)}}" style="font-size:1.5rem; margin-right:1.0rem"><i data-toggle="tooltip" data-original-title="Back to Terms Page" class="icon-arrow-left ti-menu"></i></a>
                         Institutions for {{ $term->educational_stage }}
                     </h4>
                 </div>

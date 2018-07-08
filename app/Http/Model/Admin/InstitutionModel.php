@@ -31,7 +31,7 @@ class InstitutionModel extends Model
         ->where('institutions.deleted', 0)
         ->orderBy('created_at', 'desc')->get();
     }
-    // Retrieve Questions Data by Id
+    // Retrieve Institution Data by Id
     public static function SelectInstitutionByID($institution_id){
       return self::where('id',$institution_id)->first();
     }
