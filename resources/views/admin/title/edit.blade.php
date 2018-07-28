@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success" name="@if(!empty((array)$title)){{'edit_title_admin'}}@endif"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{URL::to('admin/titles')}}" style="color:#686868"><button type="button" class="btn btn-default">Cancel</button></a>
+                                        <a href="{{URL::to('admin/title')}}" style="color:#686868"><button type="button" class="btn btn-default">Cancel</button></a>
                                     </div>
                                 </form>
                             </div>
