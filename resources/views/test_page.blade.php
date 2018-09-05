@@ -75,7 +75,7 @@
 						<div class="course_body">
 							<h3><?php echo$quest[0]->question; ?></h3>				
 						</div>
-						<form action = "http://localhost/umn-english-competition2/public/edit/<?php echo $quest[0]->id; ?>" id="radiobuttoncollection" method= "post">
+						<form action = "{{URL::to('/edit/'.$quest[0]->id)}}" id="radiobuttoncollection" method= "post">
 							<input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 						<div class="course_body">
 								<div class="radio">
