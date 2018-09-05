@@ -24,5 +24,14 @@ class AuthMiddleware
             return $next($request);
           }
         }
+        /* Admin */
+        if(strcmp($role,"user") == 0){
+          if(!$request->session()->has('user')){
+            return view('login_page');
+          }
+          else{
+            return $next($request);
+          }
+        }
     }
 }
