@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('institution_id'); $table->foreign('institution_id')->references('id')->on('institutions');
             $table->string('identity_number')->nullable();
-            $table->enum('indentity_type', ['KTP', 'SIM A', 'SIM B', 'SIM C', 'Passport'])->nullable();
+            $table->enum('identity_type', ['KTP', 'SIM A', 'SIM B', 'SIM C', 'Passport'])->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();

@@ -17,7 +17,7 @@ class CreateInstitutionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('term_id'); $table->foreign('term_id')->references('id')->on('terms');
             $table->unsignedInteger('educational_stage_id'); $table->foreign('educational_stage_id')->references('id')->on('educational_stages');
-            $table->string('username');
+            $table->string('username', 100)->unique();
             $table->string('password');
             $table->string('team_name');
             $table->string('institution_name');

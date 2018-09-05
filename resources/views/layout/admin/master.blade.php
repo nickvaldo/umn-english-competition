@@ -41,7 +41,7 @@
     <script src="{{URL::to('assets/admin/js/waves.js')}}"></script>
     @yield('dashboard_js')
     <!-- Custom Theme JavaScript -->
-    <script src="{{URL::to('assets/admin/js/custom.min.js')}}"></script>
+    <script src="{{URL::to('assets/admin/js/custom.js')}}"></script>
     <!--Style Switcher -->
     <script src="{{URL::to('assets/admin/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
     @yield('js')

@@ -29,26 +29,30 @@ class QuestionModel extends Model
                           'questions.updated_at as updated_at')
         ->join('terms', 'questions.term_id', '=', 'terms.id')
         ->join('educational_stages', 'questions.educational_stage_id', '=', 'educational_stages.id')
-        ->where('term_id',$term_id)->get();
+        ->where('term_id',$term_id)
+        ->where('questions.deleted', 0)
+        ->orderBy('created_at', 'desc')->get();
     }
-    // NOT USED
+    // Retrieve Questions Data by Id
+    public static function SelectQuestionByID($question_id){
+      return self::where('id',$question_id)->first();
+    }
     // Retrieve SMA/SMK Questions Data by Term Id
     public static function SelectSMAQuestionByTermID($term_id){
-      return self::where('term_id',$term_id)->where('educational_stage_id', 1)->get();
+      return self::where('term_id',$term_id)->where('educational_stage_id', 1)->where('questions.deleted', 0)->get();
     }
     // Retrieve Universitas Questions Data by Term Id
     public static function SelectUniversitasQuestionByTermID($term_id){
-      return self::where('term_id',$term_id)->where('educational_stage_id', 2)->get();
+      return self::where('term_id',$term_id)->where('educational_stage_id', 2)->where('questions.deleted', 0)->get();
     }
     // Retrieve SMA/SMK Questions Counter Data by Term Id
     public static function SelectCountSMAQuestionByTermID($term_id){
-      return self::where('term_id',$term_id)->where('educational_stage_id', 1)->count();
+      return self::where('term_id',$term_id)->where('educational_stage_id', 1)->where('questions.deleted', 0)->count();
     }
     // Retrieve Universitas Questions Counter Data by Term Id
     public static function SelectCountUniversitasQuestionByTermID($term_id){
-      return self::where('term_id',$term_id)->where('educational_stage_id', 2)->count();
+      return self::where('term_id',$term_id)->where('educational_stage_id', 2)->where('questions.deleted', 0)->count();
     }
-    // END NOT USED
     // Create New Question Data
     public static function InsertQuestion($term_id, $educational_stage_id, $question, $first_option, $second_option, $third_option, $fourth_option, $answer){
       return self::create([
@@ -60,6 +64,25 @@ class QuestionModel extends Model
         'third_option'          => $third_option,
         'fourth_option'         => $fourth_option,
         'answer'                => $answer
+      ]);
+    }
+    // Update Current Question Data
+    public static function UpdateQuestion($term_id, $educational_stage_id, $question, $first_option, $second_option, $third_option, $fourth_option, $answer, $question_id){
+      return self::where('id', $question_id)->update([
+        'term_id'               => $term_id,
+        'educational_stage_id'  => $educational_stage_id,
+        'question'              => $question,
+        'first_option'          => $first_option,
+        'second_option'         => $second_option,
+        'third_option'          => $third_option,
+        'fourth_option'         => $fourth_option,
+        'answer'                => $answer
+      ]);
+    }
+    // Update Question's Deleted Flag Data
+    public static function UpdateDeletedQuestion($question_id){
+      return self::where('id', $question_id)->update([
+        'deleted' => 1
       ]);
     }
 }

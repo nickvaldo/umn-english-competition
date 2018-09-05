@@ -21,16 +21,16 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Question</h4> </div>
+                    <h4 class="page-title">Institution</h4> </div>
             </div>
             <!--.row-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-info">
-                        <div class="panel-heading"  style="font-size: 1.5em"> Question Form</div>
+                        <div class="panel-heading"  style="font-size: 1.5em"> Institution Form</div>
                         <div class="panel-wrapper collapse in" aria-expanded="true">
                             <div class="panel-body">
-                                <form action="@if(!empty((array)$question)) {{ URL::to('admin/question/'.$term_id.'/edit/'.$question->id) }} @else {{ URL::to('admin/question/'.$term_id.'/add') }} @endif" method="POST">
+                                <form action="@if(!empty((array)$institution)) {{ URL::to('admin/participants/institution/'.$term_id.'/edit/'.$institution->id) }} @else {{ URL::to('admin/participants/institution/'.$term_id.'/add') }} @endif" method="POST">
                                     {{ csrf_field() }}
                                     <div class="form-body">
                                         <div class="row">
@@ -64,59 +64,64 @@
                                         <!--/row-->
                                         <div class="row">
                                             <div class="col-md-12">
+                                                <h3 class="box-title m-t-10">Account Info</h3>
+                                                <hr class="m-t-0 m-b-20">
+
+                                                <div class="row">
+                                                    <div class="col-md-6 form-group <?php if($errors->has('username')) echo "has-error"; ?>">
+                                                        <label class="control-label col-md-12">Username</label>
+                                                        <div class="col-md-12">
+                                                          <input type="text" class="form-control" name="username" placeholder="Username" value="@if(!empty((array)$institution)){{$institution->username}}@else{{old('username')}}@endif">
+                                                            <span class="help-block"> @if($errors->has('username')) {{ $errors->first('username') }} @endif</span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6 form-group <?php if($errors->has('password')) echo "has-error"; ?>">
+                                                        <label class="control-label col-md-12">Password</label>
+                                                        <div class="col-md-12">
+                                                          <input type="password" class="form-control" name="password" placeholder="Password">
+                                                            <span class="help-block"> @if($errors->has('password')) {{ $errors->first('password') }} @endif</span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
                                                 <h3 class="box-title m-t-10">General</h3>
                                                 <hr class="m-t-0 m-b-20">
 
-                                                <div class="form-group <?php if($errors->has('question')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Question</label>
+                                                <div class="form-group <?php if($errors->has('team_name')) echo "has-error"; ?>">
+                                                    <label class="control-label col-md-3">Team Name</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="question" placeholder="Question">@if(!empty((array)$question)){{$question->question}}@else{{old('question')}}@endif</textarea>
-                                                        <span class="help-block"> @if($errors->has('question')) {{ $errors->first('question') }} @endif</span>
+                                                      <input type="text" class="form-control" name="team_name" placeholder="Team Name" value="@if(!empty((array)$institution)){{$institution->team_name}}@else{{old('team_name')}}@endif">
+                                                        <span class="help-block"> @if($errors->has('team_name')) {{ $errors->first('team_name') }} @endif</span>
                                                     </div>
                                                 </div>
                                                 <!--/span-->
-                                                <div class="form-group <?php if($errors->has('first_option')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">First Option</label>
+                                                <div class="form-group <?php if($errors->has('institution_name')) echo "has-error"; ?>">
+                                                    <label class="control-label col-md-3">Institution Name</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="first_option" placeholder="First Option">@if(!empty((array)$question)){{$question->first_option}}@else{{old('first_option')}}@endif</textarea>
-                                                        <span class="help-block"> @if($errors->has('first_option')) {{ $errors->first('first_option') }} @endif</span>
+                                                      <input type="text" class="form-control" name="institution_name" placeholder="Institution Name" value="@if(!empty((array)$institution)){{$institution->institution_name}}@else{{old('institution_name')}}@endif">
+                                                        <span class="help-block"> @if($errors->has('institution_name')) {{ $errors->first('institution_name') }} @endif</span>
                                                     </div>
                                                 </div>
                                                 <!--/span-->
-                                                <div class="form-group <?php if($errors->has('second_option')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Second Option</label>
+                                                <div class="form-group <?php if($errors->has('institution_address')) echo "has-error"; ?>">
+                                                    <label class="control-label col-md-3">Institution Address</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="second_option" placeholder="Second Option">@if(!empty((array)$question)){{$question->second_option}}@else{{old('second_option')}}@endif</textarea>
-                                                        <span class="help-block"> @if($errors->has('second_option')) {{ $errors->first('second_option') }} @endif</span>
+                                                      <textarea rows="5" class="form-control" name="institution_address" placeholder="Institution Address">@if(!empty((array)$institution)){{$institution->institution_address}}@else{{old('institution_address')}}@endif</textarea>
+                                                        <span class="help-block"> @if($errors->has('institution_address')) {{ $errors->first('institution_address') }} @endif</span>
                                                     </div>
                                                 </div>
                                                 <!--/span-->
-                                                <div class="form-group <?php if($errors->has('third_option')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Third Option</label>
+                                                <div class="form-group <?php if($errors->has('points')) echo "has-error"; ?>">
+                                                    <label class="control-label col-md-3">Points</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="third_option" placeholder="Third Option">@if(!empty((array)$question)){{$question->third_option}}@else{{old('third_option')}}@endif</textarea>
-                                                        <span class="help-block"> @if($errors->has('third_option')) {{ $errors->first('third_option') }} @endif</span>
-                                                    </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="form-group <?php if($errors->has('fourth_option')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Fourth Option</label>
-                                                    <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="fourth_option" placeholder="Forth Option">@if(!empty((array)$question)){{$question->fourth_option}}@else{{old('fourth_option')}}@endif</textarea>
-                                                        <span class="help-block"> @if($errors->has('fourth_option')) {{ $errors->first('fourth_option') }} @endif</span>
-                                                    </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="form-group <?php if($errors->has('answer')) echo "has-error"; ?>">
-                                                    <label class="control-label col-md-3">Answer</label>
-                                                    <div class="col-md-9">
-                                                        <select class="form-control" name="answer" data-placeholder="Choose a Category" tabindex="1">
-                                                            @foreach($answer_enum as $value)
-                                                                @if(!empty((array)$question)) @php($compare = $question->answer) @else @php($compare = old('answer')) @endif
-                                                                <option value="{{$value}}" @if(strcmp($value,$compare) == 0) {{ "selected" }} @endif>{{$value}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span class="help-block"> @if($errors->has('answer')) {{ $errors->first('answer') }} @endif</span>
+                                                      <input type="text" class="form-control" name="points" placeholder="Points" value="@if(!empty((array)$institution)){{$institution->points}}@else{{old('points')}}@endif">
+                                                        <span class="help-block"> @if($errors->has('points')) {{ $errors->first('points') }} @endif</span>
                                                     </div>
                                                 </div>
                                                 <!--/span-->
@@ -126,8 +131,8 @@
                                         <h3 class="box-title m-t-40"></h3>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success" name="@if(!empty((array)$question)){{'edit_question_admin'}}@else{{'add_question_admin'}}@endif"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{URL::to('admin/questions/'.$term_id)}}" style="color:#686868"><button type="button" class="btn btn-default">Cancel</button></a>
+                                        <button type="submit" class="btn btn-success" name="@if(!empty((array)$institution)){{'edit_institution_admin'}}@else{{'add_institution_admin'}}@endif"> <i class="fa fa-check"></i> Save</button>
+                                        <a href="{{URL::to('admin/participants/institutions/'.$term_id)}}" style="color:#686868"><button type="button" class="btn btn-default">Cancel</button></a>
                                     </div>
                                 </form>
                             </div>

@@ -50,8 +50,8 @@
             <li class="nav-small-cap">--- Others</li>
             <li> <a href="{{URL::to('/admin/logos')}}" class="waves-effect"><i class="fa fa-image" style="margin-right: 0.7em"></i> <span class="hide-menu"> Logos </span></a> </li>
             <li> <a href="{{URL::to('/admin/sponsors')}}" class="waves-effect"><i class="fa fa-briefcase" style="margin-right: 0.7em"></i> <span class="hide-menu"> Sponsors </span></a> </li>
-            <li> <a href="{{URL::to('/admin/titles')}}" class="waves-effect"><i class="fa fa-pencil-square-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Title </span></a> </li>
-            <li> <a href="{{URL::to('/admin/rules')}}" class="waves-effect"><i class="fa fa-exclamation-circle" style="margin-right: 0.7em"></i> <span class="hide-menu"> Rule </span></a> </li>
+            <li> <a href="{{URL::to('/admin/title')}}" class="waves-effect"><i class="fa fa-pencil-square-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Title </span></a> </li>
+            <li> <a href="{{URL::to('/admin/rule')}}" class="waves-effect"><i class="fa fa-exclamation-circle" style="margin-right: 0.7em"></i> <span class="hide-menu"> Rule </span></a> </li>
             <li class="nav-small-cap">--- Support</li>
             <!--<li><a href="documentation.html" class="waves-effect"><i class="fa fa-circle-o text-danger"></i> <span class="hide-menu">Documentation</span></a></li>
             <li><a href="gallery.html" class="waves-effect"><i class="fa fa-circle-o text-info"></i> <span class="hide-menu">Gallery</span></a></li>
