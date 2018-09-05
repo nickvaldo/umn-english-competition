@@ -75,7 +75,7 @@
 						<div class="course_body">
 							<h3><?php echo$quest[0]->question; ?></h3>				
 						</div>
-						<form action = "http://localhost/umn-english-competition2/public/edit/<?php echo $quest[0]->soal_id; ?>" id="radiobuttoncollection" method= "post">
+						<form action = "http://localhost/umn-english-competition2/public/edit/<?php echo $quest[0]->id; ?>" id="radiobuttoncollection" method= "post">
 							<input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 						<div class="course_body">
 								<div class="radio">
@@ -94,14 +94,14 @@
 						<div class="course_body">
 							<div class="row">
 								<div class="col-lg-6">
-									<input type="submit" class="counter_form_button" value="Prev" onclick="location.href='{{url('edit/1')}}'"/>
+									<input type="submit" class="counter_form_button" name="isijwb" value="Prev"/>
 								</div>
 								<div class="col-lg-6">
-									<input type="submit" class="counter_form_button" value="Next"/>
+									<input type="submit" class="counter_form_button" name="isijwb" value="Next"/>
 								</div>
 							</div>
 						</div>
-						</form>
+						
 					</div>
 					
 				</div>
@@ -114,18 +114,21 @@
 								$col = 0;
 								foreach($showresult as $shows){
 									if($col%4 == 0) { echo "<tr>"; }
-									if($shows->answer_user == 0){
-										echo "<td><a href=\"http://localhost/umn-english-competition2/public/edit/",$shows->number_soal,"\" class=\"btn btn-danger custom\" role=\"button\">",$shows->number_soal,"</a></td>";
+									if($shows->answer_user == '0' or $shows->answer_user == ''){
+										echo "<td><input type='submit' class=\"btn btn-danger custom\" name='isijwb' value='",$shows->number_soal,"' onclick=\"location.href='",url('edit',$shows->number_soal),"\"/></td>";
+										//echo "<td><a href=\"http://localhost/umn-english-competition2/public/edit/",$shows->number_soal,"\" class=\"btn btn-danger custom\" role=\"button\">",$shows->number_soal,"</a></td>";
 									}
 									else{
+										echo "<td><input type='submit' class=\"btn btn-success custom\" name='isijwb' value='",$shows->number_soal,"' onclick=\"location.href='",url('edit',$shows->number_soal),"\"/></td>";
 										//echo $quest[($col+($row*4))]->soal_id;
-										echo "<td><a href=\"http://localhost/umn-english-competition2/public/edit/",$shows->number_soal,"\" class=\"btn btn-success custom\" role=\"button\">",$shows->number_soal,"</a></td>";
+										//echo "<td><a href=\"http://localhost/umn-english-competition2/public/edit/",$shows->number_soal,"\" class=\"btn btn-success custom\" role=\"button\">",$shows->number_soal,"</a></td>";
 									}
 									if($col%4 == 3) { echo "</tr>"; }
 									$col++;
-								}	
+								}
 							?>
 							</table>
+							</form>
 							</div>
 						</div>
 						<div class="course_body">
