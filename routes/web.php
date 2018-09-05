@@ -19,12 +19,15 @@ Route::get('/login', 'participantController@viewLogin')->name('loginPage');
 */
 Route::get('/', function () {
     return view('login_page');
+})->name('user_login');
+Route::post('/login', 'loginauth@LoginProcess')->name('user_login_process');
+Route::middleware('user_gate:user')->group(function() {
+    Route::get('/edit/{id}','QuestionController@show');
+    Route::post('/edit/{id}','QuestionController@editQst');
+    Route::get('/rand','QuestionController@randSoal')->name('user_random_process');
+    Route::get('score_page','QuestionController@score');
+    Route::get('done_page');
 });
-Route::get('/edit/{id}','QuestionController@show');
-Route::post('/edit/{id}','QuestionController@editQst');
-Route::get('/rand/','QuestionController@randSoal');
-Route::get('score_page','QuestionController@score');
-Route::get('done_page');
 /* ADMIN */
 Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');
 Route::post('/admin/login', 'Admin\AuthController@LoginProcess')->name('admin_login_process');

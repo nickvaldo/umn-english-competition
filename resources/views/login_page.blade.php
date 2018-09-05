@@ -14,6 +14,15 @@
 <link rel="stylesheet" type="text/css" href="{{url('plugins/OwlCarousel2-2.2.1/animate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/responsive.css')}}">
+<style>
+.input-error{
+	border-color: red;
+}
+.text-error{
+	color: red;
+	font-size: 12px;
+}
+</style>
 </head>
 <body>
 
@@ -65,10 +74,21 @@
 						<div class="course_footer">
 							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 								<div class="col fill_height">
-									<form action = "http://localhost/umn-english-competition2/public/rand"counter_form_content d-flex flex-column align-items-center justify-content-center" action="get">
+									<form action = "{{ URL::to('/login') }}" class="counter_form_content d-flex flex-column align-items-center justify-content-center" method="POST">
+										{{ csrf_field() }}
 										<div class="counter_form_title">Login</div>
-										<input type="text" class="counter_input" placeholder="Username:" required="required">
-										<input type="password" class="counter_input" placeholder="Password:" required="required">
+										<input type="text" name="username" class="counter_input <?php if($errors->has('username') || session()->has('username')) echo "input-error"; ?>" placeholder="Username:" required="required" value="{{old('username')}}">
+										@if($errors->has('username'))
+											<p class="text-error">{{ $errors->first('username') }}</p>
+										@elseif(session()->has('username'))
+											<p class="text-error">{{ session('username') }}</p>
+										@endif
+										<input type="password" name="password" class="counter_input <?php if($errors->has('username') || session()->has('username')) echo "input-error"; ?>" placeholder="Password:" required="required">
+										@if($errors->has('password'))
+											<p class="text-error">{{ $errors->first('password') }}</p>
+										@elseif(session()->has('password'))
+											<p class="text-error">{{ session('password') }}</p>
+										@endif
 										<button type="submit" class="counter_form_button">Login</button>
 									</form>
 								</div>
