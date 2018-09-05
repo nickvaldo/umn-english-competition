@@ -12,11 +12,19 @@
 */
 
 /* PARTICIPANT */
-Route::get('/', function(){
+/*Route::get('/', function(){
     return redirect()->route('loginPage');
 });
 Route::get('/login', 'participantController@viewLogin')->name('loginPage');
-
+*/
+Route::get('/', function () {
+    return view('login_page');
+});
+Route::get('/edit/{id}','QuestionController@show');
+Route::post('/edit/{id}','QuestionController@editQst');
+Route::get('/rand/','QuestionController@randSoal');
+Route::get('score_page','QuestionController@score');
+Route::get('done_page');
 /* ADMIN */
 Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');
 Route::post('/admin/login', 'Admin\AuthController@LoginProcess')->name('admin_login_process');
