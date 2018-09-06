@@ -12,9 +12,9 @@ class QuestionController extends Controller
 	public function show($id){
 		$userid = session('user')['id'];
 		$qst = DB::select('select id, mod(id,20)+1 as number_soal ,concat(mod(id,20)+1, ". ", question) as question ,first_opt,second_opt,third_opt,forth_opt,answer_user, soal_id ,time_close 
-		from tr_question where mod(id,20)+1 = ? 
-		order by number_soal',[$id]);
-		$showresult = DB::select('select mod(id,20)+1 as number_soal ,concat(mod(id,20)+1, ". ", question) as question,answer_user 
+		from tr_question where mod(id,20)+1 = ? and user_id = ?
+		order by number_soal',[$id, $userid]);
+		$showresult = DB::select('select id, mod(id,20)+1 as number_soal ,concat(mod(id,20)+1, ". ", question) as question,answer_user 
 		from tr_question 
 		where user_id = ? order by number_soal',[$userid]);
 		return view('test_page',['quest'=>$qst, 'showresult'=>$showresult]);
