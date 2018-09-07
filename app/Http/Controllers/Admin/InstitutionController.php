@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 /* Load Model */
 use App\Http\Model\Admin\Educational_StageModel as Educational_Stage;
 use App\Http\Model\Admin\InstitutionModel as Institution;
+use App\Http\Model\Admin\Login_SessionModel as Login_Session;
 use App\Http\Model\Admin\TermModel as Term;
 
 class InstitutionController extends Controller
@@ -56,9 +57,12 @@ class InstitutionController extends Controller
         $institution = Institution::InsertInstitution($request->term, $request->educational_stage, $request->username, Hash::make($request->password), $request->team_name, $request->institution_name, $request->institution_address, $request->points);
 
         // Check Whether Institution is Null or Not
-        if($institution != NULL)
+        if($institution != NULL){
+          //Insert New Login Session Data
+          $login_session = Login_Session::InsertLoginSession($institution->id, '1990-01-01 00:00:00', NULL);
           // Redirect to Dashboard Page when Institution is not NULL
           return redirect('admin/participants/institutions/'.$term_id);
+        }
         else
           // Redirect Back when Institution is NUll
           return redirect()->back()->withErrors(['insert-data-error' => 'Something Wrong. Try Again']);

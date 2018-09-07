@@ -109,6 +109,23 @@ Artisan::command('seedingDatabase', function () {
       'institution_name' => 'Grapevine University',
       'institution_address' => '9691 Ocean Lane Elkridge, MD 21075'
     ]);
+    // Login_Sessions Table
+    factory(App\Http\Model\Admin\Login_SessionModel::class)->create([
+      'institution_id' =>  1, 
+      'active_at' => '1990-01-01 00:00:00', 
+    ]);
+    factory(App\Http\Model\Admin\Login_SessionModel::class)->create([
+      'institution_id' =>  2, 
+      'active_at' => '1990-01-01 00:00:00', 
+    ]);
+    factory(App\Http\Model\Admin\Login_SessionModel::class)->create([
+      'institution_id' =>  3, 
+      'active_at' => '1990-01-01 00:00:00', 
+    ]);
+    factory(App\Http\Model\Admin\Login_SessionModel::class)->create([
+      'institution_id' =>  4, 
+      'active_at' => '1990-01-01 00:00:00', 
+    ]);
     // Questions Table
     factory(App\Http\Model\Admin\QuestionModel::class, 10)->create([
       'term_id' => 1, // SMA/SMK PRE Elimination Test 2018
