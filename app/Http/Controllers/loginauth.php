@@ -21,7 +21,7 @@ class loginauth extends Controller
             'password'  => 'bail|required|min:4',
         ]);
         //Retrieve Certain Data from Admin Table
-        $user = DB::select('SELECT `id`,`username`,`password` FROM `institutions` WHERE `username` = ?', [$request->username]);
+        $user = DB::select('SELECT id,username,password,team_name,term_id,educational_stage_id FROM `institutions` WHERE `username` = ?', [$request->username]);
         //Check Whether Data is Available
         if($user){
             //Process When Data is Available
@@ -31,6 +31,10 @@ class loginauth extends Controller
                 //Create Admin Session
                 session(['user' => [
                     'id'    => $user[0]->id,
+					'username' => $user[0]->username,
+					'team_name' => $user[0]->team_name,
+					'term_id' => $user[0]->term_id,
+					'stage_id'=> $user[0]->educational_stage_id,
                     ]]);
                 return redirect()->route('user_random_process');
             }

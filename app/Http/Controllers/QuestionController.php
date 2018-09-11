@@ -9,24 +9,29 @@ use App\Http\Controllers\Controller;
 class QuestionController extends Controller
 {
     //
+	private $jmlSoal=20;
 	public function show($id){
+		$num = $this->jmlSoal;
+		
 		$userid = session('user')['id'];
-		$qst = DB::select('select id, mod(id,20)+1 as number_soal ,concat(mod(id,20)+1, ". ", question) as question ,first_opt,second_opt,third_opt,forth_opt,answer_user, soal_id ,time_close 
-		from tr_question where mod(id,20)+1 = ? and user_id = ?
+		$qst = DB::select('select id, mod(id,'.$num.')+1 as number_soal ,concat(mod(id,'.$num.')+1, ". ", question) as question ,first_opt,second_opt,third_opt,forth_opt,answer_user, soal_id ,time_close 
+		from tr_question where mod(id,'.$num.')+1 = ? and user_id = ?
 		order by number_soal',[$id, $userid]);
-		$showresult = DB::select('select id, mod(id,20)+1 as number_soal ,concat(mod(id,20)+1, ". ", question) as question,answer_user 
+		//var_dump($qst);die;
+		$showresult = DB::select('select id, mod(id,'.$num.')+1 as number_soal ,concat(mod(id,'.$num.')+1, ". ", question) as question,answer_user 
 		from tr_question 
 		where user_id = ? order by number_soal',[$userid]);
+		
 		return view('test_page',['quest'=>$qst, 'showresult'=>$showresult]);
 	}
 	public function editQst(Request $request, $id){
 		$ans = $request->input('optradio');
 		$userId = session('user')['id'];
 		DB::update('UPDATE tr_question set answer_user = ? where id = ?',[$ans,$id]);
-		$idsoal = ($id%20)+1;
+		$idsoal = ($id%$this->jmlSoal)+1;
 		if($request->input('isijwb') == 'Next'){
 			$page = ++$idsoal;
-			if($page > 100) $page = 100;
+			if($page > $this->jmlSoal) $page = $this->jmlSoal;
 			return redirect('edit/'.$page);
 		}
 		else if($request->input('isijwb') == 'Prev'){
@@ -39,11 +44,15 @@ class QuestionController extends Controller
 		}
 	}
 	public function randSoal(){
+		
+		$soal = $this->jmlSoal;
 		$userId = session('user')['id'];
+		$termid = session('user')['term_id'];
+		$edustage = session('user')['stage_id'];
 		DB::update('delete from tr_question where user_id = ?',[$userId]);
 		DB::update('insert into tr_question(soal_id,user_id,question,first_opt,second_opt,third_opt,forth_opt,answer,mod_soal,answer_user,time_close) 
 		select id, ? ,question,first_option, second_option,third_option, fourth_option,answer, 10,0,DATE_ADD(now(), INTERVAL +2 HOUR) 
-		from questions order by rand() limit 20',[$userId]);
+		from questions where term_id = ? and educational_stage_id = ? order by rand() limit '.$soal,[$userId,$termid,$edustage]);
 		return redirect('edit/1');
 	}
 	public function score(){
