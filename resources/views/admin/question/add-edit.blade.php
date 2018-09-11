@@ -5,12 +5,29 @@
 <!-- Menu CSS -->
 <link href="{{URL::to('assets/admin/bower_components/sidebar-nav/dist/sidebar-nav.min.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="{{URL::to('assets/admin/bower_components/html5-editor/bootstrap-wysihtml5.css')}}" />
 @endsection
 @section('js')
 <script src="{{URL::to('assets/admin/js/jasny-bootstrap.js')}}"></script>
 
 <script src="{{URL::to('assets/admin/bower_components/jquery/dist/jquery-ui.js')}}"></script>
-<script></script>
+<!-- wysuhtml5 Plugin JavaScript -->
+<script src="{{URL::to('assets/admin/bower_components/tinymce/tinymce.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        if ($("#mymce").length > 0) {
+            tinymce.init({
+                selector: "textarea#mymce",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker", "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking", "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            });
+        }
+    });
+</script>
 @endsection
 @section('content')
 <div id="wrapper">
@@ -70,8 +87,8 @@
                                                 <div class="form-group <?php if($errors->has('question')) echo "has-error"; ?>">
                                                     <label class="control-label col-md-3">Question</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="question" placeholder="Question">@if(!empty((array)$question)){{$question->question}}@else{{old('question')}}@endif</textarea>
-                                                        <span class="help-block"> @if($errors->has('question')) {{ $errors->first('question') }} @endif</span>
+                                                        <textarea id="mymce" name="question" placeholder="Enter your Rule here...">@if(!empty((array)$question)){{$question->question}}@else{{old('question')}}@endif</textarea>
+                                                            <span class="help-block"> @if($errors->has('question')) {{ $errors->first('question') }} @endif</span>
                                                     </div>
                                                 </div>
                                                 <!--/span-->
