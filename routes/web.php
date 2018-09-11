@@ -17,12 +17,10 @@
 });
 Route::get('/login', 'participantController@viewLogin')->name('loginPage');
 */
-Route::get('/', function () {
-    return view('login_page');
-})->name('user_login');
+Route::get('/', 'loginauth@LoginView')->name('user_login');
 Route::post('/login', 'loginauth@LoginProcess')->name('user_login_process');
 Route::middleware('user_gate:user')->group(function() {
-    Route::get('/edit/{id}','QuestionController@show');
+    Route::get('/edit/{id}','QuestionController@show')->name('user_test');
     Route::post('/edit/{id}','QuestionController@editQst');
     Route::get('/rand','QuestionController@randSoal')->name('user_random_process');
     Route::get('score_page','QuestionController@score');

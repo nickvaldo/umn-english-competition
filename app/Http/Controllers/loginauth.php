@@ -7,15 +7,23 @@ use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Jenssegers\Agent\Agent;
 
 class loginauth extends Controller
 {
     // Display Login Page
-    public function LoginView(){
-        return view('admin.login');
+    public function LoginView(Request $request){
+        if(!$request->session()->has('user')){
+            return view('login_page');
+        }
+        else{
+            return redirect()->route('user_test', ['id' => 1]);
+        }
+        
     }
     // Administrator Login Process
     public function LoginProcess(Request $request){
+        $agent = new Agent();
         //Login Form Validation from Login Page
         $this->validate($request, [
             'username'  => 'bail|required|exists:institutions,username',
@@ -34,47 +42,56 @@ class loginauth extends Controller
             //Count Different Time from Current Time to Last Active
             $different_time = $login_datetime->addMinutes(1)->diffInMinutes($current_time, false);
             if($different_time >= 0){
-                /* RESTRICTION LOGIN REGION */
-                //Retrieve Login Session Data 
-                $login_session = DB::select('SELECT `id`, `active_at`, `active_device` FROM `login_sessions` WHERE `institution_id` = ?', [$user[0]->id]);
-                //Parsing Active At into Carbon Type Data
-                $active_at = Carbon::parse($login_session[0]->active_at);
-                //Count Different Time from Current Time to Last Active
-                $remaining_time = $active_at->diffInMinutes($current_time, false);
-                //Check Whether User Already Login or Not
-                if($remaining_time >= 10){
-                    //Check Whether The Password is Correct
-                    if(Hash::check($request->password, $user[0]->password)){
-                        //Process When The Password Matches
-                        //Update to Login Session
-                        $success = DB::table('login_sessions')->where('institution_id', $user[0]->id)->update([
-                            'active_at'     => $current_time,
-                            'active_device' => $request->ip(),
-                        ]);
-                        //Check Wheter Inserting Data is Success
-                        if($success){
-                            //Process When Success
-                            //Create Admin Session
-                            session(['user' => [
-                                'id'    => $user[0]->id,
-                            ]]);
-                            return redirect()->route('user_random_process');
+                /* RESTRICTION LOGIN FROM MOBILE */
+                if(!($agent->isMobile() || $agent->isTablet())){
+                    // Device is Mobile
+                    /* RESTRICTION LOGIN REGION */
+                    //Retrieve Login Session Data 
+                    $login_session = DB::select('SELECT `id`, `active_at`, `active_device` FROM `login_sessions` WHERE `institution_id` = ?', [$user[0]->id]);
+                    //Parsing Active At into Carbon Type Data
+                    $active_at = Carbon::parse($login_session[0]->active_at);
+                    //Count Different Time from Current Time to Last Active
+                    $remaining_time = $active_at->diffInMinutes($current_time, false);
+                    //Check Whether User Already Login or Not
+                    if($remaining_time >= 10){
+                        //Check Whether The Password is Correct
+                        if(Hash::check($request->password, $user[0]->password)){
+                            //Process When The Password Matches
+                            //Update to Login Session
+                            $success = DB::table('login_sessions')->where('institution_id', $user[0]->id)->update([
+                                'active_at'     => $current_time,
+                                'active_device' => $request->ip(),
+                            ]);
+                            //Check Wheter Inserting Data is Success
+                            if($success){
+                                //Process When Success
+                                //Create Admin Session
+                                session(['user' => [
+                                    'id'    => $user[0]->id,
+                                ]]);
+                                return redirect()->route('user_random_process');
+                            }
+                            else{
+                                //Process When Unsuccess
+                                $request->session()->flash('password', 'Something Went Wrong');
+                                return back()->withInput();
+                            }
                         }
                         else{
-                            //Process When Unsuccess
-                            $request->session()->flash('password', 'Something Went Wrong');
+                            //Process When The Password doesn't Matches
+                            $request->session()->flash('password', 'The password is invalid');
                             return back()->withInput();
                         }
                     }
                     else{
-                        //Process When The Password doesn't Matches
-                        $request->session()->flash('password', 'The password is invalid');
+                        //Process When Unsuccess
+                        $request->session()->flash('password', 'You Cannot Login, Please Logout First or Please Contact Us');
                         return back()->withInput();
                     }
-                }
+                } 
                 else{
-                    //Process When Unsuccess
-                    $request->session()->flash('password', 'You Cannot Login, Please Logout First or Please Contact Us');
+                    // Other than mobile
+                    $request->session()->flash('password', 'You Cannot Login, Because of Your Device Type');
                     return back()->withInput();
                 }
             }
