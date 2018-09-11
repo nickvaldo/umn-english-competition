@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class QuestionController extends Controller
 {
@@ -29,6 +30,13 @@ class QuestionController extends Controller
 		$userId = session('user')['id'];
 		DB::update('UPDATE tr_question set answer_user = ? where id = ?',[$ans,$id]);
 		$idsoal = ($id%$this->jmlSoal)+1;
+		//Retrieve Current Time
+		$current_time = Carbon::now();
+		//Update to Login Session
+		$success = DB::table('login_sessions')->where('institution_id', $userId)->update([
+			'active_at'     => $current_time,
+			'active_device' => $request->ip(),
+		]);
 		if($request->input('isijwb') == 'Next'){
 			$page = ++$idsoal;
 			if($page > $this->jmlSoal) $page = $this->jmlSoal;
