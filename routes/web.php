@@ -24,7 +24,10 @@ Route::middleware('user_gate:user')->group(function() {
     Route::post('/edit/{id}','QuestionController@editQst');
     Route::get('/rand','QuestionController@randSoal')->name('user_random_process');
     Route::get('score_page','QuestionController@score');
-    Route::get('done_page');
+	Route::get('/done_page', function(){
+		$request->session()->forget('user');
+		return view('done_page');
+	});
 });
 /* ADMIN */
 Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');

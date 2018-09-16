@@ -72,6 +72,7 @@
 			<div class="row features_row">
 				<div class="col-lg-9 course_col">
 					<div class="course">
+						<?php echo session('user')['team_name']; ?>
 						<div class="course_body">
 							<h3><?php echo$quest[0]->question; ?></h3>				
 						</div>
