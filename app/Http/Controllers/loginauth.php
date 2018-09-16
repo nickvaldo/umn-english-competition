@@ -53,7 +53,7 @@ class loginauth extends Controller
                     //Count Different Time from Current Time to Last Active
                     $remaining_time = $active_at->diffInMinutes($current_time, false);
                     //Check Whether User Already Login or Not
-                    if($remaining_time >= 10){
+                    if($remaining_time >= 1){
                         //Check Whether The Password is Correct
                         if(Hash::check($request->password, $user[0]->password)){
                             //Process When The Password Matches
@@ -103,6 +103,7 @@ class loginauth extends Controller
         }
         else{
             //Process When Data isn't Available
+            var_dump($user);die;
             $request->session()->flash('username', 'The selected username is invalid');
             return back()->withInput();
         }

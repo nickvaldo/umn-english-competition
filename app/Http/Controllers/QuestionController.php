@@ -21,6 +21,7 @@ class QuestionController extends Controller
 		return view('test_page',['quest'=>$qst, 'showresult'=>$showresult]);
 	}
 	public function editQst(Request $request, $id){
+		$request->session()->forget('user');
 		$ans = $request->input('optradio');
 		$userId = session('user')['id'];
 		DB::update('UPDATE tr_question set answer_user = ? where id = ?',[$ans,$id]);
