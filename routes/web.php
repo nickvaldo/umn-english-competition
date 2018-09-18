@@ -29,6 +29,9 @@ Route::middleware('user_gate:user')->group(function() {
 		return view('done_page');
 	});
 });
+Route::get('/rule_page', function(){
+		return view('rule_page');
+	});
 /* ADMIN */
 Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');
 Route::post('/admin/login', 'Admin\AuthController@LoginProcess')->name('admin_login_process');
