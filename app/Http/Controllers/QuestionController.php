@@ -55,14 +55,26 @@ class QuestionController extends Controller
 	public function randSoal(){
 		
 		$soal = $this->jmlSoal;
-		$userId = session('user')['id'];
+		$seeall = DB::select('select id, term_id, educational_stage_id from institutions');
+		foreach($seeall as $s)
+		{
+			echo $s->id;
+			$userId = $s->id;
+			$termid = $s->term_id;
+			$edustage = $s->educational_stage_id;
+			DB::update('delete from tr_question where user_id = ?',[$userId]);
+			DB::update('insert into tr_question(soal_id,user_id,question,first_opt,second_opt,third_opt,forth_opt,answer,mod_soal,answer_user,time_close) 
+						select id, ? ,question,first_option, second_option,third_option, fourth_option,answer, 10,0,DATE_ADD(now(), INTERVAL +2 HOUR) 
+						from questions where term_id = ? and educational_stage_id = ? order by rand() limit '.$soal,[$userId,$termid,$edustage]);
+		}
+		/*$userId = session('user')['id'];
 		$termid = session('user')['term_id'];
 		$edustage = session('user')['stage_id'];
 		DB::update('delete from tr_question where user_id = ?',[$userId]);
 		DB::update('insert into tr_question(soal_id,user_id,question,first_opt,second_opt,third_opt,forth_opt,answer,mod_soal,answer_user,time_close) 
 		select id, ? ,question,first_option, second_option,third_option, fourth_option,answer, 10,0,DATE_ADD(now(), INTERVAL +2 HOUR) 
 		from questions where term_id = ? and educational_stage_id = ? order by rand() limit '.$soal,[$userId,$termid,$edustage]);
-		return redirect('edit/1');
+		return redirect('edit/1');*/
 	}
 	public function score(){
 		$scr = DB::select("select sum(hasil) as total_score from(

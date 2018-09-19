@@ -35,6 +35,7 @@ Route::get('/rule_page', function(){
 Route::get('/student_page', function(){
 		return view('student_page');
 	});
+Route::get('/acak','QuestionController@randSoal');
 /* ADMIN */
 Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');
 Route::post('/admin/login', 'Admin\AuthController@LoginProcess')->name('admin_login_process');
