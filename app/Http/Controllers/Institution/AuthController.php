@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
+use DB;
 
 //Load Model
 use App\Http\Model\Institution\InstitutionModel as Institution;
@@ -27,7 +28,7 @@ class AuthController extends Controller
             'password'  => 'bail|required|min:4',
         ]);
         //Retrieve Certain Data from Institution Table
-        $user = Institution::SelectInstitutionByUsername($request->username);
+        $user = Institution::SelectInstitutionByUsername($request->username)->get();
         //Check Whether Data is Available
         if($user){
             //Process When Data is Available
