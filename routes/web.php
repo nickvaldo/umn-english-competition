@@ -17,15 +17,18 @@
 });
 Route::get('/login', 'participantController@viewLogin')->name('loginPage');
 */
-Route::get('/', 'loginauth@LoginView')->name('user_login');
-Route::post('/login', 'loginauth@LoginProcess')->name('user_login_process');
+Route::get('/', function(){
+    return redirect()->route('user_login');
+});
+Route::get('/login', 'Institution\AuthController@LoginView')->name('user_login');
+Route::post('/login', 'Institution\AuthController@LoginProcess')->name('user_login_process');
 Route::middleware('user_gate:user')->group(function() {
     Route::get('/edit/{id}','QuestionController@show')->name('user_test');
     Route::post('/edit/{id}','QuestionController@editQst');
     Route::get('/rand','QuestionController@randSoal')->name('user_random_process');
     Route::get('score_page','QuestionController@score');
 	Route::get('/done_page', function(){
-		$request->session()->forget('user');
+		Request::session()->forget('user');
 		return view('done_page');
 	});
 });

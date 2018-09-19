@@ -95,9 +95,6 @@
 										@endif
 										<button type="submit" class="counter_form_button">Login</button>
 									</form>
-									{{ Session::forget('username') }}
-									{{ Session::forget('password') }}
-									{{ Session::flush() }}
 								</div>
 							</div>
 						</div>
