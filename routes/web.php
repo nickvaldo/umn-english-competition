@@ -25,20 +25,22 @@ Route::post('/login', 'Institution\AuthController@LoginProcess')->name('user_log
 Route::middleware('user_gate:user')->group(function() {
     Route::get('/edit/{id}','QuestionController@show')->name('user_test');
     Route::post('/edit/{id}','QuestionController@editQst');
-    Route::get('/rand','QuestionController@randSoal')->name('user_random_process');
+    Route::get('/rand','QuestionController@to')->name('user_random_process');
+	//Route::get('/student_page','QuestionController@to')->name('user_random_process');
     Route::get('score_page','QuestionController@score');
+	Route::get('/rule_page', function(){
+		return view('rule_page');
+	});
+	Route::get('/student_page', function(){
+		return view('student_page');
+	});
 	Route::get('/done_page', function(){
 		Request::session()->forget('user');
 		return view('done_page');
 	});
 });
-Route::get('/rule_page', function(){
-		return view('rule_page');
-	});
-Route::get('/student_page', function(){
-		return view('student_page');
-	});
 Route::get('/acak','QuestionController@randSoal');
+
 /* ADMIN */
 Route::get('/admin/login', 'Admin\AuthController@LoginView')->name('admin_login');
 Route::post('/admin/login', 'Admin\AuthController@LoginProcess')->name('admin_login_process');

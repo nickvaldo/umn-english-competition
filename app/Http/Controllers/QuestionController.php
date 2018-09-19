@@ -26,7 +26,7 @@ class QuestionController extends Controller
 		return view('test_page',['quest'=>$qst, 'showresult'=>$showresult]);
 	}
 	public function editQst(Request $request, $id){
-		$request->session()->forget('user');
+		//$request->session()->forget('user');
 		$ans = $request->input('optradio');
 		$userId = session('user')['id'];
 		DB::update('UPDATE tr_question set answer_user = ? where id = ?',[$ans,$id]);
@@ -84,5 +84,8 @@ class QuestionController extends Controller
 							end as hasil
 							from tr_question where user_id = ? and answer_user != '0') asd",[session('user')['id']]);
 		return view('score_page',['scores'=>$scr]);
+	}
+	public function to(){
+		return view('student_page');
 	}
 }

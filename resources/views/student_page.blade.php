@@ -61,7 +61,7 @@
 					Alamat Sekolah/Perguruan Tinggi : </br>
 				</h3>
 				
-				<input type="submit" class="counter_form_button" value="SELESAI" onclick="location.href='http://localhost/umn-english-competition2/public/done_page'"/>
+				<input type="submit" class="counter_form_button" value="Lanjut" onclick="location.href='{{URL::to('/rule_page')}}'"/>
 				</div>
 			</div>
 		</div>

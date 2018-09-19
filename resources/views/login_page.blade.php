@@ -14,9 +14,17 @@
 <link rel="stylesheet" type="text/css" href="{{url('plugins/OwlCarousel2-2.2.1/animate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/responsive.css')}}">
+<style>
+.input-error{
+	border-color: red;
+}
+.text-error{
+	color: red;
+	font-size: 12px;
+}
+</style>
 </head>
 <body>
-
 <div class="super_container">
 
 	<!-- Header -->
@@ -30,7 +38,7 @@
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="#">
-									<!--<div class="logo_text">Unic<span>at</span></div>-->
+									<div class="logo_text"></div>
 								</a>
 							</div>
 						</div>
@@ -46,56 +54,81 @@
 
 	<div class="features">
 		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">PRE ELIMINATION TEST</h2>
+						<h2 class="section_title">ACCOUNTING WEEK</h2>
+					</div>
+				</div>
+			</div>
 			<div class="row features_row">
+				
 				<!-- Course -->
-				<div class="col-lg-12">
-				<img src="{{url('images/gabungan.png')}}" alt="">
-				<center><h1>Peraturan Pre Elimination Test</h1></center>
-				<br>
-				<center><p><u>Soal</u><p>
-				<center><p>Pada sesi Pre Elimination Test ini disediakan 100 soal yang harus dikerjakan oleh peserta.<p>
-				<br>
-				<center><p>Poin Penilaian <br>
-				Jawaban yang benar bernilai 4 (Empat) Poin <br>
-				Jawaban yang tidak dijawab bernilai 0 (Nol) poin <br>
-				Jawaban yang salah bernilai -1 (Minus 1) poin</p>
-				<br>
-				<center><p><u>Waktu</u><p>
-				<center><p>Waktu yang disediakan untuk sesi ini adalah 2 jam (120 Menit).<br>
-				Durasi pengerjaan soal yang dilakukan peserta termasuk ke dalam penilaian kami.</p>
-				<br>
-				<center><p><u>Teknis</u><p>
-				Segala bentuk kesalahan teknis yang berasal dari peserta bukan tanggungjawab kami dan tidak ada<br>
-				pengulangan sesi.</p>
-				<br>
-				<br>
-				<center><p>Berdoa sebelum mengerjakan sangat dianjurkan,<br>
-				Pastikan sumber daya laptop/komputer aman.<br>
-				Doa restu orang tua sangat membantu.<br>
-				Selamat Mengerjakan!</p>
-				<br>
-				<br>
-				<center><p>Call Center :<p>
-				<center><p>XXXXXXXXXXX-XXXXXXXXXX<p>
-				
-				
-				<center><h2>Lama Pengerjaan</h2></center>
-				<input type="submit" class="counter_form_button" value="SELESAI" onclick="location.href='{{URL::to('/edit/1')}}'"/>
+				<div class="col-lg-4 course_col">
+					<div class="course">
+						<div class="course_image"><img src="{{url('images/gabungan.png')}}" alt=""></div>
+						<div class="course_body">
+						</div>
+						<div class="course_footer">
+							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+								<div class="col fill_height">
+								
+									<form action = "{{ URL::to('/login') }}" class="counter_form_content d-flex flex-column align-items-center justify-content-center" method="POST">
+										{{ csrf_field() }}
+										<div class="counter_form_title">Login</div>
+										<input type="text" name="username" class="counter_input <?php if($errors->has('username') || session()->has('username')) echo "input-error"; ?>" placeholder="Username:" required="required" value="{{old('username')}}">
+										@if($errors->has('username'))
+											<p class="text-error">{{ $errors->first('username') }}</p>
+										@elseif(session()->has('username'))
+											<p class="text-error">{{ session('username') }}</p>
+										@endif
+										<input type="password" name="password" class="counter_input <?php if($errors->has('password') || session()->has('password')) echo "input-error"; ?>" placeholder="Password:" required="required">
+										@if($errors->has('password'))
+											<p class="text-error">{{ $errors->first('password') }}</p>
+										@elseif(session()->has('password'))
+											<p class="text-error">{{ session('password') }}</p>
+										@endif
+										<button type="submit" class="counter_form_button">Login</button>
+									</form>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 course_col">
+					<div class="course">
+						<div class="course_body">
+							<div class="home_slider_container">
+								<div class="owl-carousel owl-theme home_slider">
+									<div class="owl-item">
+										<div class="course_image"><img src="images/course_1.jpg" alt="" height="385"></div>
+									</div>
+									<div class="owl-item">
+										<div class="course_image"><img src="images/course_2.jpg" alt="" height="385"></div>
+									</div>
+									<div class="owl-item">
+										<div class="course_image"><img src="images/course_3.jpg" alt="" height="385"></div>
+									</div>
+								</div>
+							</div>
+							<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+							<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<!-- Footer -->
 
 	<footer class="footer">
-		<!--style="background-image:url(images/footer_background.png)"-->
-		<div class="footer_background"></div>
+		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
 		<div class="container">
-			Supported By :  <img src="http://www.carlogos.org/logo/Mitsubishi-logo-2000x2500.png" height="100px">
-							<img src="http://www.pngall.com/wp-content/uploads/2016/04/Toyota-Logo-PNG-Clipart.png" height="100px">
 			<div class="row copyright_row">
 				<div class="col">
-					
 					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
 						<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -113,6 +146,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 </div>
+
 <script src="{{url('js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url('css/bootstrap4/popper.js')}}"></script>
 <script src="{{url('css/bootstrap4/bootstrap.min.js')}}"></script>
@@ -124,6 +158,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{url('plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{url('plugins/easing/easing.js')}}"></script>
 <script src="{{url('plugins/parallax-js-master/parallax.min.js')}}"></script>
-<script src="js/custom.js"></script>
+<script src="{{url('js/custom.js')}}"></script>
 </body>
 </html>

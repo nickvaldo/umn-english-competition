@@ -73,11 +73,6 @@
 						<div class="course_footer">
 							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 								<div class="col fill_height">
-									flash password : @php(var_dump(session()->has('password')))<br>
-									error password : @php(var_dump($errors->has('password')))<br>
-									flash email : @php(var_dump(session()->has('user')))<br>
-									error email : @php(var_dump($errors->has('user')))<br>
-									session all : @php(var_dump(Session::all()))<br>
 									<form action = "{{ URL::to('/login') }}" class="counter_form_content d-flex flex-column align-items-center justify-content-center" method="POST">
 										{{ csrf_field() }}
 										<div class="counter_form_title">Login</div>
