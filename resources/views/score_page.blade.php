@@ -60,7 +60,7 @@
 					@endforeach
 				<br>
 				<center><h2>Lama Pengerjaan</h2></center>
-				<input type="submit" class="counter_form_button" value="SELESAI" onclick="location.href='http://localhost/umn-english-competition2/public/done_page'"/>
+				<a href="{{URL::to('/done_page')}}"><input type="submit" class="counter_form_button" value="SELESAI"/></a>
 				</div>
 			</div>
 		</div>
