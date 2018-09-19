@@ -30,7 +30,7 @@
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="#">
-									<div class="logo_text">Unic<span>at</span></div>
+									<!--<div class="logo_text">Unic<span>at</span></div>-->
 								</a>
 							</div>
 						</div>
@@ -50,36 +50,17 @@
 				<!-- Course -->
 				<div class="col-lg-12">
 				<img src="{{url('images/gabungan.png')}}" alt="">
-				<center><h1>Peraturan Pre Elimination Test</h1></center>
+				<center><h1>WELCOME!</h1></center>
 				<br>
-				<center><p><u>Soal</u><p>
-				<center><p>Pada sesi Pre Elimination Test ini disediakan 100 soal yang harus dikerjakan oleh peserta.<p>
-				<br>
-				<center><p>Poin Penilaian <br>
-				Jawaban yang benar bernilai 4 (Empat) Poin <br>
-				Jawaban yang tidak dijawab bernilai 0 (Nol) poin <br>
-				Jawaban yang salah bernilai -1 (Minus 1) poin</p>
-				<br>
-				<center><p><u>Waktu</u><p>
-				<center><p>Waktu yang disediakan untuk sesi ini adalah 2 jam (120 Menit).<br>
-				Durasi pengerjaan soal yang dilakukan peserta termasuk ke dalam penilaian kami.</p>
-				<br>
-				<center><p><u>Teknis</u><p>
-				Segala bentuk kesalahan teknis yang berasal dari peserta bukan tanggungjawab kami dan tidak ada<br>
-				pengulangan sesi.</p>
-				<br>
-				<br>
-				<center><p>Berdoa sebelum mengerjakan sangat dianjurkan,<br>
-				Pastikan sumber daya laptop/komputer aman.<br>
-				Doa restu orang tua sangat membantu.<br>
-				Selamat Mengerjakan!</p>
-				<br>
-				<br>
-				<center><p>Call Center :<p>
-				<center><p>XXXXXXXXXXX-XXXXXXXXXX<p>
+				<center><h2><u>Profile Kelompok</u></h2>
+				</br>
+				<h3>
+					Nama Kelompok : </br>
+					Nama Anggota : </br>
+					Asal Sekolah/Perguruan Tinggi : </br>
+					Alamat Sekolah/Perguruan Tinggi : </br>
+				</h3>
 				
-				
-				<center><h2>Lama Pengerjaan</h2></center>
 				<input type="submit" class="counter_form_button" value="SELESAI" onclick="location.href='http://localhost/umn-english-competition2/public/done_page'"/>
 				</div>
 			</div>

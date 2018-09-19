@@ -30,7 +30,7 @@
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="#">
-									<div class="logo_text">Unic<span>at</span></div>
+									<!--<div class="logo_text">Unic<span>at</span></div>-->
 								</a>
 							</div>
 						</div>
