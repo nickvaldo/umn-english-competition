@@ -28,14 +28,14 @@ class AuthController extends Controller
             'password'  => 'bail|required|min:4',
         ]);
         //Retrieve Certain Data from Institution Table
-        $user = Institution::SelectInstitutionByUsername($request->username)->get();
+        $user = Institution::SelectInstitutionByUsername($request->username);
         //Check Whether Data is Available
         if($user){
             //Process When Data is Available
             //Retrieve Current Time
             $current_time = Carbon::now();
             /* TERM LOGIN TIME */
-            $term = DB::select('SELECT terms.login_datetime FROM `institutions` INNER JOIN `terms` ON institutions.term_id = terms.id WHERE institutions.id = ?', [$user[0]->id]);
+            $term = DB::select('SELECT terms.login_datetime FROM `institutions` INNER JOIN `terms` ON institutions.term_id = terms.id WHERE institutions.id = ?', [$user->id]);
             $login_datetime = Carbon::parse($term[0]->login_datetime);
             //Count Different Time from Current Time to Last Active
             $different_time = $login_datetime->addMinutes(1)->diffInMinutes($current_time, false);
@@ -45,7 +45,7 @@ class AuthController extends Controller
                     // Device is Mobile
                     /* RESTRICTION LOGIN REGION */
                     //Retrieve Login Session Data 
-                    $login_session = DB::select('SELECT `id`, `active_at`, `active_device` FROM `login_sessions` WHERE `institution_id` = ?', [$user[0]->id]);
+                    $login_session = DB::select('SELECT `id`, `active_at`, `active_device` FROM `login_sessions` WHERE `institution_id` = ?', [$user->id]);
                     //Parsing Active At into Carbon Type Data
                     $active_at = Carbon::parse($login_session[0]->active_at);
                     //Count Different Time from Current Time to Last Active
@@ -53,10 +53,10 @@ class AuthController extends Controller
                     //Check Whether User Already Login or Not
                     if($remaining_time >= 1){
                         //Check Whether The Password is Correct
-                        if(Hash::check($request->password, $user[0]->password)){
+                        if(Hash::check($request->password, $user->password)){
                             //Process When The Password Matches
                             //Update to Login Session
-                            $success = DB::table('login_sessions')->where('institution_id', $user[0]->id)->update([
+                            $success = DB::table('login_sessions')->where('institution_id', $user->id)->update([
                                 'active_at'     => $current_time,
                                 'active_device' => $request->ip(),
                             ]);
@@ -65,11 +65,11 @@ class AuthController extends Controller
                                 //Process When Success
                                 //Create Admin Session
                                 session(['user' => [
-									'id'    => $user[0]->id,
-									'username' => $user[0]->username,
-									'team_name' => $user[0]->team_name,
-									'term_id' => $user[0]->term_id,
-									'stage_id'=> $user[0]->educational_stage_id,
+									'id'    => $user->id,
+									'username' => $user->username,
+									'team_name' => $user->team_name,
+									'term_id' => $user->term_id,
+									'stage_id'=> $user->educational_stage_id,
 									]]);
 								return redirect()->route('user_random_process');
                             }
