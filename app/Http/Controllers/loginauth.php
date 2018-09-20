@@ -30,7 +30,7 @@ class loginauth extends Controller
             'password'  => 'bail|required|min:4',
         ]);
         //Retrieve Certain Data from Admin Table
-        $user = DB::select('SELECT id,username,password,team_name,term_id,educational_stage_id FROM `institutions` WHERE `username` = ?', [$request->username]);
+        $user = DB::select('SELECT id,username,password,team_name,term_id,educational_stage_id, institution_address, institution_name FROM `institutions` WHERE `username` = ?', [$request->username]);
         //Check Whether Data is Available
         if($user){
             //Process When Data is Available
@@ -72,6 +72,8 @@ class loginauth extends Controller
 									'team_name' => $user[0]->team_name,
 									'term_id' => $user[0]->term_id,
 									'stage_id'=> $user[0]->educational_stage_id,
+									'ins_address'=> $user[0]->institution_address,
+									'institution_name'=> $user[0]->institution_name,
 									]]);
 								return redirect()->route('user_random_process');
                             }

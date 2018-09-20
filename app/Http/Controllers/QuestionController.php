@@ -9,12 +9,13 @@ use Carbon\Carbon;
 
 class QuestionController extends Controller
 {
-    //
 	private $jmlSoal=20;
 	public function show($id){
 		$num = $this->jmlSoal;
-		
+		$edustage = session('user')['stage_id'];
+		$termid = session('user')['term_id'];
 		$userid = session('user')['id'];
+		
 		$qst = DB::select('select id, mod(id,'.$num.')+1 as number_soal ,concat(mod(id,'.$num.')+1, ". ", question) as question ,first_opt,second_opt,third_opt,forth_opt,answer_user, soal_id ,time_close 
 		from tr_question where mod(id,'.$num.')+1 = ? and user_id = ?
 		order by number_soal',[$id, $userid]);
@@ -22,8 +23,8 @@ class QuestionController extends Controller
 		$showresult = DB::select('select id, mod(id,'.$num.')+1 as number_soal ,concat(mod(id,'.$num.')+1, ". ", question) as question,answer_user 
 		from tr_question 
 		where user_id = ? order by number_soal',[$userid]);
-		
-		return view('test_page',['quest'=>$qst, 'showresult'=>$showresult]);
+		$showtime = DB::select('select test_datetime, tolerance_datetime from terms where period_id = ? and educational_stage_id = ?',[$termid,$userid]);
+		return view('test_page',['quest'=>$qst, 'showresult'=>$showresult, 'showtime'=>$showtime]);
 	}
 	public function editQst(Request $request, $id){
 		//$request->session()->forget('user');
@@ -67,14 +68,6 @@ class QuestionController extends Controller
 						select id, ? ,question,first_option, second_option,third_option, fourth_option,answer, 10,0,DATE_ADD(now(), INTERVAL +2 HOUR) 
 						from questions where term_id = ? and educational_stage_id = ? order by rand() limit '.$soal,[$userId,$termid,$edustage]);
 		}
-		/*$userId = session('user')['id'];
-		$termid = session('user')['term_id'];
-		$edustage = session('user')['stage_id'];
-		DB::update('delete from tr_question where user_id = ?',[$userId]);
-		DB::update('insert into tr_question(soal_id,user_id,question,first_opt,second_opt,third_opt,forth_opt,answer,mod_soal,answer_user,time_close) 
-		select id, ? ,question,first_option, second_option,third_option, fourth_option,answer, 10,0,DATE_ADD(now(), INTERVAL +2 HOUR) 
-		from questions where term_id = ? and educational_stage_id = ? order by rand() limit '.$soal,[$userId,$termid,$edustage]);
-		return redirect('edit/1');*/
 	}
 	public function score(){
 		$scr = DB::select("select sum(hasil) as total_score from(

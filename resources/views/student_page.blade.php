@@ -55,10 +55,10 @@
 				<center><h2><u>Profile Kelompok</u></h2>
 				</br>
 				<h3>
-					Nama Kelompok : </br>
-					Nama Anggota : </br>
+					Nama Kelompok : <?php echo session('user')['team_name']; ?> </br>
+					Nama Anggota : ? </br>
 					Asal Sekolah/Perguruan Tinggi : </br>
-					Alamat Sekolah/Perguruan Tinggi : </br>
+					Alamat Sekolah/Perguruan Tinggi :</br>
 				</h3>
 				
 				<input type="submit" class="counter_form_button" value="Lanjut" onclick="location.href='{{URL::to('/rule_page')}}'"/>

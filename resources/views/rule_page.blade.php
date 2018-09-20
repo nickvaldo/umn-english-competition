@@ -80,7 +80,7 @@
 				
 				
 				<center><h2>Lama Pengerjaan</h2></center>
-				<input type="submit" class="counter_form_button" value="SELESAI" onclick="location.href='{{URL::to('/edit/1')}}'"/>
+				<input type="submit" class="counter_form_button" value="Lanjut" onclick="location.href='{{URL::to('/edit/1')}}'"/>
 				</div>
 			</div>
 		</div>
