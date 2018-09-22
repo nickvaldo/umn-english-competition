@@ -1,8 +1,9 @@
 <IfModule mod_rewrite.c>
     <IfModule LiteSpeed>
-	CacheDisable public/
-	CacheDisable private/
+        CacheDisable public /
+        CacheDisable private /
     </IfModule>
+    
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
