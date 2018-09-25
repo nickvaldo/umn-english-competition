@@ -63,6 +63,7 @@
                                     <th data-hide = "phone"> Institution Name </th>
                                     <th data-hide = "all"> Institution Address </th>
                                     <th> Points </th>
+                                    <th> Duration </th>
                                     <th data-hide = "phone, tablet"> Created Since </th>
                                     <th data-hide = "all"> Updated At </th>
                                     <th data-sort-ignore="true" class="min-width"> Action </th>
@@ -93,6 +94,7 @@
                                         <td>{{ $institution->institution_name }}</td>
                                         <td>{{ $institution->institution_address }}</td>
                                         <td>{{ number_format((float)$institution->points, 2, '.', '') }}</td>
+                                        <td>{{ date_format(date_create($institution->test_duration)," h:i:s ") }}</td>
                                         <td>{{ date_format(date_create($institution->created_at),"D, d M Y | h:i:s A") }}</td>
                                         <td>{{ date_format(date_create($institution->updated_at),"D, d M Y | h:i:s A") }}</td>
                                         <td>

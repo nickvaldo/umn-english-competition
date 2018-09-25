@@ -125,6 +125,14 @@
                                                     </div>
                                                 </div>
                                                 <!--/span-->
+                                                <div class="form-group <?php if($errors->has('test_duration')) echo "has-error"; ?>">
+                                                    <label class="control-label col-md-3">Test Duration</label>
+                                                    <div class="col-md-9">
+                                                      <input type="time" class="form-control" name="test_duration" placeholder="Test Duration" value="@if(!empty((array)$institution)){{$institution->test_duration}}@else{{old('test_duration')}}@endif">
+                                                        <span class="help-block"> @if($errors->has('test_duration')) {{ $errors->first('test_duration') }} @endif</span>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
                                             </div>
                                         </div>
                                         <!--/row-->

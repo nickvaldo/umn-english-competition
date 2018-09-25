@@ -23,6 +23,7 @@ class InstitutionModel extends Model
                           'institutions.institution_name as institution_name',
                           'institutions.institution_address as institution_address',
                           'institutions.points as points',
+                          'institutions.test_duration as test_duration',
                           'institutions.created_at as created_at',
                           'institutions.updated_at as updated_at')
         ->join('terms', 'institutions.term_id', '=', 'terms.id')
@@ -52,7 +53,7 @@ class InstitutionModel extends Model
       return self::where('term_id',$term_id)->where('educational_stage_id', 2)->where('institutions.deleted', 0)->count();
     }
     // Create New Institution Data
-    public static function InsertInstitution($term_id, $educational_stage_id, $username, $password, $team_name, $institution_name, $institution_address, $points){
+    public static function InsertInstitution($term_id, $educational_stage_id, $username, $password, $team_name, $institution_name, $institution_address, $points, $test_duration){
       return self::create([
         'term_id'               => $term_id,
         'educational_stage_id'  => $educational_stage_id,
@@ -61,11 +62,12 @@ class InstitutionModel extends Model
         'team_name'             => $team_name,
         'institution_name'      => $institution_name,
         'institution_address'   => $institution_address,
-        'points'                => $points
+        'points'                => $points,
+        'test_duration'         => $test_duration
       ]);
     }
     // Update Current Institution Data
-    public static function UpdateInstitution($term_id, $educational_stage_id, $username, $password, $team_name, $institution_name, $institution_address, $points, $institution_id){
+    public static function UpdateInstitution($term_id, $educational_stage_id, $username, $password, $team_name, $institution_name, $institution_address, $points, $test_duration, $institution_id){
       return self::where('id', $institution_id)->update([
         'term_id'               => $term_id,
         'educational_stage_id'  => $educational_stage_id,
@@ -74,7 +76,8 @@ class InstitutionModel extends Model
         'team_name'             => $team_name,
         'institution_name'      => $institution_name,
         'institution_address'   => $institution_address,
-        'points'                => $points
+        'points'                => $points,
+        'test_duration'         => $test_duration
       ]);
     }
     // Update Institution's Deleted Flag Data

@@ -51,10 +51,11 @@ class InstitutionController extends Controller
           'team_name'           => 'required|max:250',
           'institution_name'    => 'required|max:250',
           'institution_address' => 'required',
-          'points'              => 'required'
+          'points'              => 'required',
+          'test_duration'       => 'required'
         ]);
         // Insert New Institution Data
-        $institution = Institution::InsertInstitution($request->term, $request->educational_stage, $request->username, Hash::make($request->password), $request->team_name, $request->institution_name, $request->institution_address, $request->points);
+        $institution = Institution::InsertInstitution($request->term, $request->educational_stage, $request->username, Hash::make($request->password), $request->team_name, $request->institution_name, $request->institution_address, $request->points, $request->test_duration);
 
         // Check Whether Institution is Null or Not
         if($institution != NULL){
@@ -97,10 +98,11 @@ class InstitutionController extends Controller
           'team_name'           => 'required|max:250',
           'institution_name'    => 'required|max:250',
           'institution_address' => 'required',
-          'points'              => 'required'
+          'points'              => 'required',
+          'test_duration'       => 'required'
         ]);
         // Update Current Institution Data
-        $institution = Institution::UpdateInstitution($request->term, $request->educational_stage, $request->username, Hash::make($request->password), $request->team_name, $request->institution_name, $request->institution_address, $request->points, $institution_id);
+        $institution = Institution::UpdateInstitution($request->term, $request->educational_stage, $request->username, Hash::make($request->password), $request->team_name, $request->institution_name, $request->institution_address, $request->points, $request->test_duration, $institution_id);
 
         // Check Whether Institution is Null or Not
         if($institution != NULL)
