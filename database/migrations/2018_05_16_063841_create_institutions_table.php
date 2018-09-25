@@ -23,6 +23,7 @@ class CreateInstitutionsTable extends Migration
             $table->string('institution_name');
             $table->text('institution_address');
             $table->float('points', 8, 2)->default(0.0);
+            $table->timestamp('test_duration')->nullable();
             $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
