@@ -66,7 +66,7 @@
                                                             <select class="form-control" name="identity_type" data-placeholder="Choose a Identity Type" tabindex="1">
                                                                 @foreach($identity_type_enum as $value)
                                                                     @if(!empty((array)$student)) @php($compare = $value) @else @php($compare = old('identity_type')) @endif
-                                                                    <option value="{{$value}}" @if(strcmp($value,$compare) == 0) {{ "selected" }} @endif>{{$value}}</option>
+                                                                    <option value="{{$value}}" @if(!empty((array)$student)) @if(strcmp($student->identity_type,$compare) == 0) {{ "selected" }} @endif @endif>{{$value}}</option>
                                                                 @endforeach
                                                             </select>
                                                             <span class="help-block"> @if($errors->has('institution_id')) {{ $errors->first('identity_type') }} @endif</span>
@@ -111,7 +111,7 @@
                                                             <select class="form-control" name="gender" data-placeholder="Choose a Gender" tabindex="1">
                                                                 @foreach($gender_enum as $value)
                                                                     @if(!empty((array)$student)) @php($compare = $value) @else @php($compare = old('gender')) @endif
-                                                                    <option value="{{$value}}" @if(strcmp($value,$compare) == 0) {{ "selected" }} @endif>{{$value}}</option>
+                                                                    <option value="{{$value}}" @if(!empty((array)$student)) @if(strcmp($student->gender,$compare) == 0) {{ "selected" }} @endif @endif>{{$value}}</option>
                                                                 @endforeach
                                                             </select>
                                                             <span class="help-block"> @if($errors->has('gender')) {{ $errors->first('gender') }} @endif</span>
@@ -127,7 +127,7 @@
                                                     </div>
                                                     <!--/span-->
                                                     <div class="col-md-6 form-group <?php if($errors->has('birth_place')) echo "has-error"; ?>">
-                                                        <label class="control-label col-md-3">Birth Place</label>
+                                                        <label class="control-label col-md-3">Birth Date</label>
                                                         <div class="col-md-9">
                                                           <input type="date" class="form-control" name="birth_date" value="@if(!empty((array)$student)){{$student->birth_date}}@else{{old('birth_date')}}@endif">
                                                             <span class="help-block"> @if($errors->has('birth_place')) {{ $errors->first('birth_place') }} @endif</span>

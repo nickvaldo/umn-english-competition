@@ -15,9 +15,53 @@
 <script src="{{URL::to('assets/admin/bower_components/tinymce/tinymce.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        if ($("#mymce").length > 0) {
+        if ($("#question").length > 0) {
             tinymce.init({
-                selector: "textarea#mymce",
+                selector: "textarea#question",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker", "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking", "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            });
+        }
+        if ($("#first_option").length > 0) {
+            tinymce.init({
+                selector: "textarea#first_option",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker", "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking", "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            });
+        }
+        if ($("#second_option").length > 0) {
+            tinymce.init({
+                selector: "textarea#second_option",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker", "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking", "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            });
+        }
+        if ($("#third_option").length > 0) {
+            tinymce.init({
+                selector: "textarea#third_option",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker", "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking", "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            });
+        }
+        if ($("#fourth_option").length > 0) {
+            tinymce.init({
+                selector: "textarea#fourth_option",
                 theme: "modern",
                 height: 300,
                 plugins: [
@@ -87,7 +131,7 @@
                                                 <div class="form-group <?php if($errors->has('question')) echo "has-error"; ?>">
                                                     <label class="control-label col-md-3">Question</label>
                                                     <div class="col-md-9">
-                                                        <textarea id="mymce" name="question" placeholder="Enter your Rule here...">@if(!empty((array)$question)){{$question->question}}@else{{old('question')}}@endif</textarea>
+                                                        <textarea id="question" name="question" placeholder="Enter your Question here...">@if(!empty((array)$question)){{$question->question}}@else{{old('question')}}@endif</textarea>
                                                             <span class="help-block"> @if($errors->has('question')) {{ $errors->first('question') }} @endif</span>
                                                     </div>
                                                 </div>
@@ -95,7 +139,7 @@
                                                 <div class="form-group <?php if($errors->has('first_option')) echo "has-error"; ?>">
                                                     <label class="control-label col-md-3">First Option</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="first_option" placeholder="First Option">@if(!empty((array)$question)){{$question->first_option}}@else{{old('first_option')}}@endif</textarea>
+                                                      <textarea id="first_option" name="first_option" placeholder="Enter your First Option here...">@if(!empty((array)$question)){{$question->first_option}}@else{{old('first_option')}}@endif</textarea>
                                                         <span class="help-block"> @if($errors->has('first_option')) {{ $errors->first('first_option') }} @endif</span>
                                                     </div>
                                                 </div>
@@ -103,7 +147,7 @@
                                                 <div class="form-group <?php if($errors->has('second_option')) echo "has-error"; ?>">
                                                     <label class="control-label col-md-3">Second Option</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="second_option" placeholder="Second Option">@if(!empty((array)$question)){{$question->second_option}}@else{{old('second_option')}}@endif</textarea>
+                                                      <textarea id="second_option" name="second_option" placeholder="Enter your Second Option here...">@if(!empty((array)$question)){{$question->second_option}}@else{{old('second_option')}}@endif</textarea>
                                                         <span class="help-block"> @if($errors->has('second_option')) {{ $errors->first('second_option') }} @endif</span>
                                                     </div>
                                                 </div>
@@ -111,7 +155,7 @@
                                                 <div class="form-group <?php if($errors->has('third_option')) echo "has-error"; ?>">
                                                     <label class="control-label col-md-3">Third Option</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="third_option" placeholder="Third Option">@if(!empty((array)$question)){{$question->third_option}}@else{{old('third_option')}}@endif</textarea>
+                                                      <textarea id="third_option" name="third_option" placeholder="Enter your Third Option here...">@if(!empty((array)$question)){{$question->third_option}}@else{{old('third_option')}}@endif</textarea>
                                                         <span class="help-block"> @if($errors->has('third_option')) {{ $errors->first('third_option') }} @endif</span>
                                                     </div>
                                                 </div>
@@ -119,7 +163,7 @@
                                                 <div class="form-group <?php if($errors->has('fourth_option')) echo "has-error"; ?>">
                                                     <label class="control-label col-md-3">Fourth Option</label>
                                                     <div class="col-md-9">
-                                                      <textarea rows="5" class="form-control" name="fourth_option" placeholder="Forth Option">@if(!empty((array)$question)){{$question->fourth_option}}@else{{old('fourth_option')}}@endif</textarea>
+                                                      <textarea id="fourth_option" name="fourth_option" placeholder="Enter your Fourth Option here...">@if(!empty((array)$question)){{$question->fourth_option}}@else{{old('fourth_option')}}@endif</textarea>
                                                         <span class="help-block"> @if($errors->has('fourth_option')) {{ $errors->first('fourth_option') }} @endif</span>
                                                     </div>
                                                 </div>

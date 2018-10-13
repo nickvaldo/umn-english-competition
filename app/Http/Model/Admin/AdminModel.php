@@ -18,4 +18,25 @@ class AdminModel extends Model
     public static function SelectAdminByUsername($username){
       return self::where('username',$username)->first();
     }
+
+    //Retrieve Certain Data Based on ID Field from Admin Table
+    public static function SelectAdminById($id){
+      return self::where('id',$id)->first();
+    }
+
+    public static function UpdateAdminByUsername($username, $first_name, $middle_name, $last_name, $email, $admin_id){
+      return self::where('id', $admin_id)->update([
+        'username'    => $username,
+        'first_name'  => $first_name,
+        'middle_name' => $middle_name,
+        'last_name'   => $last_name,
+        'email'       => $email
+      ]);
+    }
+
+    public static function UpdateAdminPasswordByUsername($password, $admin_id){
+      return self::where('id', $admin_id)->update([
+        'password'   => $password
+      ]);
+    }
 }

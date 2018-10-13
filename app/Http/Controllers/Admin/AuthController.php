@@ -32,6 +32,7 @@ class AuthController extends Controller
           //Process When The Password Matches
           //Create Admin Session
           session(['admin' => [
+            'admin_id'    => $admin->id,
             'username'    => $admin->username,
             'first_name'  => $admin->first_name,
             'middle_name' => $admin->middle_name,

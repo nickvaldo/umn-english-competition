@@ -68,7 +68,7 @@
                         <div class="panel-heading"  style="font-size: 1.5em"> Sponsor Form</div>
                         <div class="panel-wrapper collapse in" aria-expanded="true">
                             <div class="panel-body">
-                                <form action="@if(!empty((array)$sponsor)) {{ URL::to('admin/sponsor/edit/'.$sponsor->id) }} @else {{ URL::to('admin/sponsor/add') }} @endif" method="POST" enctype="multipart/form-data">
+                                <form action="@if(!empty((array)$slide)) {{ URL::to('admin/slide/edit/'.$slide->id) }} @else {{ URL::to('admin/slide/add') }} @endif" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="form-body">
                                         <div class="row">
@@ -79,15 +79,23 @@
                                                     <div class="col-md-12 form-group <?php if($errors->has('image')) echo "has-error"; ?>">
                                                         <h3 class="box-title">Sponsor Image</h3>
                                                         <label for="input-file-disable-remove">You can drag and drop a file here or click it</label>
-                                                        <input type="file" name="image" id="input-file-disable-remove" class="dropify" data-show-remove="false" data-default-file="@if(!empty((array)$sponsor)){{URL::to($sponsor->image)}}@else{{old('image')}}@endif"/>
+                                                        <input type="file" name="image" id="input-file-disable-remove" class="dropify" data-show-remove="false" data-default-file="@if(!empty((array)$slide)){{URL::to($slide->image)}}@else{{old('image')}}@endif"/>
                                                           <span class="help-block">@if($errors->has('image')) {{ $errors->first('image') }} @endif</span>
                                                     </div>
                                                     <!--/span-->
-                                                    <div class="col-md-12 form-group <?php if($errors->has('alternative_description')) echo "has-error"; ?>">
+                                                    <div class="col-md-12 form-group <?php if($errors->has('title')) echo "has-error"; ?>">
+                                                        <label class="control-label col-md-3">Title</label>
+                                                        <div class="col-md-9">
+                                                          <input type="text" class="form-control" name="title" placeholder="Title" value="@if(!empty((array)$slide)){{$slide->title}}@else{{old('title')}}@endif">
+                                                            <span class="help-block"> @if($errors->has('title')) {{ $errors->first('title') }} @endif</span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-12 form-group <?php if($errors->has('description')) echo "has-error"; ?>">
                                                         <label class="control-label col-md-3">Description</label>
                                                         <div class="col-md-9">
-                                                          <input type="text" class="form-control" name="alternative_description" placeholder="Description" value="@if(!empty((array)$sponsor)){{$sponsor->alternative_description}}@else{{old('alternative_description')}}@endif">
-                                                            <span class="help-block"> @if($errors->has('alternative_description')) {{ $errors->first('alternative_description') }} @endif</span>
+                                                          <textarea rows="3" class="form-control" name="description" placeholder="Description">@if(!empty((array)$slide)){{$slide->description}}@else{{old('description')}}@endif</textarea>
+                                                            <span class="help-block"> @if($errors->has('description')) {{ $errors->first('description') }} @endif</span>
                                                         </div>
                                                     </div>
                                                     <!--/span-->
@@ -98,8 +106,8 @@
                                         <h3 class="box-title m-t-40"></h3>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success" name="@if(!empty((array)$sponsor)){{'edit_sponsor_admin'}}@else{{'add_sponsor_admin'}}@endif"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{URL::to('admin/sponsors')}}" style="color:#686868"><button type="button" class="btn btn-default">Cancel</button></a>
+                                        <button type="submit" class="btn btn-success" name="@if(!empty((array)$slide)){{'edit_slide_admin'}}@else{{'add_slide_admin'}}@endif"> <i class="fa fa-check"></i> Save</button>
+                                        <a href="{{URL::to('admin/slides')}}" style="color:#686868"><button type="button" class="btn btn-default">Cancel</button></a>
                                     </div>
                                 </form>
                             </div>

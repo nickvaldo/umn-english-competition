@@ -18,10 +18,10 @@ class CreateQuestionsTable extends Migration
             $table->unsignedInteger('term_id'); $table->foreign('term_id')->references('id')->on('terms');
             $table->unsignedInteger('educational_stage_id'); $table->foreign('educational_stage_id')->references('id')->on('educational_stages');
             $table->text('question');
-            $table->string('first_option');
-            $table->string('second_option');
-            $table->string('third_option');
-            $table->string('fourth_option');
+            $table->text('first_option');
+            $table->text('second_option');
+            $table->text('third_option');
+            $table->text('fourth_option');
             $table->enum('answer',['A', 'B', 'C', 'D'])->default('A');
             $table->boolean('deleted')->default(false);
             $table->timestamps();

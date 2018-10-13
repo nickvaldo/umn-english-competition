@@ -15,7 +15,7 @@
 <!--FooTable init-->
 <script src="{{URL::to('assets/admin/js/footable-init.js')}}"></script>
 <!-- Sweet-Alert  -->
-<script src="{{URL::to('assets/admin/bower_components/sweetaler t/sweetalert.min.js')}}"></script>
+<script src="{{URL::to('assets/admin/bower_components/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{URL::to('assets/admin/bower_components/sweetalert/jquery.sweet-alert.custom.js')}}"></script>
 @endsection
 @section('js')
@@ -32,12 +32,12 @@
             <div class="row bg-title">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <h4 class="page-title">
-                        Sponsors for Accounting Week
+                        Slides for Accounting Week
                     </h4>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb">
-                        <li class="active">Sponsors</li>
+                        <li class="active">Slides</li>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -56,7 +56,9 @@
                             <thead>
                                 <tr>
                                     <th data-toggle = "true"> Image </th>
-                                    <th data-hide = "phone"> Description </th>
+                                    <th data-hide = "phone"> Title </th>
+                                    <th data-hide = "phone, tablet"> Description </th>
+                                    <th data-hide = "all"> Big Image </th>
                                     <th data-hide = "all"> Created Since </th>
                                     <th data-hide = "all"> Updated At </th>
                                     <th data-sort-ignore="true" class="min-width"> Action </th>
@@ -66,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 m-b-20">
                                         <div class="form-group">
-                                            <a href="{{URL::to('/admin/sponsor/add')}}">
+                                            <a href="{{URL::to('/admin/slide/add')}}">
                                                 <button class="form-control btn btn-outline btn-primary btn-sm" data-toggle="tooltip" data-original-title="Add"><i class="ti-plus" aria-hidden="true" style="margin-right:10px"></i>Add New Data</button>
                                             </a>
                                         </div>
@@ -79,18 +81,20 @@
                                 </div>
                             </div>
                             <tbody>
-                                 @foreach($sponsors as $sponsor)
+                                 @foreach($slides as $slide)
                                     <tr>
-                                        <td> <img class="img-responsive" style="display: inline-block; height: 4.0em" src="{{URL::to($sponsor->image)}}"> </td>
-                                        <td>{{ $sponsor->alternative_description }}</td>
-                                        <td>{{ date_format(date_create($sponsor->created_at),"D, d M Y | h:i:s A") }}</td>
-                                        <td>{{ date_format(date_create($sponsor->updated_at),"D, d M Y | h:i:s A") }}</td>
+                                        <td> <img class="img-responsive" style="display: inline-block; height: 4.0em" src="{{URL::to($slide->image)}}"> </td>
+                                        <td>{{ $slide->title }}</td>
+                                        <td>{{ $slide->description }}</td>
+                                        <td> <img class="img-responsive" style="width: 100rem" src="{{URL::to($slide->image)}}"> </td>
+                                        <td>{{ date_format(date_create($slide->created_at),"D, d M Y | h:i:s A") }}</td>
+                                        <td>{{ date_format(date_create($slide->updated_at),"D, d M Y | h:i:s A") }}</td>
                                         <td>
-                                            <a href="{{URL::to('/admin/sponsor/edit/'.$sponsor->id)}}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Edit"><i class="ti-marker-alt" aria-hidden="true"></i></button></a>
-                                            <a id="sa-warning-{{$sponsor->id}}" style="color:#337ab7"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button></a>
+                                            <a href="{{URL::to('/admin/slide/edit/'.$slide->id)}}"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Edit"><i class="ti-marker-alt" aria-hidden="true"></i></button></a>
+                                            <a id="sa-warning-{{$slide->id}}" style="color:#337ab7"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline" data-toggle="tooltip" data-original-title="Delete"><i class="ti-close" aria-hidden="true"></i></button></a>
                                             <script>
                                                 //Warning Message
-                                                $('#sa-warning-{{$sponsor->id}}').click(function(){
+                                                $('#sa-warning-{{$slide->id}}').click(function(){
                                                     swal({
                                                         title: "Are you sure?",
                                                         text: "You will not be able to recover this imaginary file!",
@@ -105,7 +109,7 @@
                                                             text: "Your imaginary file has been deleted.",
                                                             type: "success"
                                                         }, function() {*/
-                                                            window.location = "{{URL::to('/admin/sponsor/delete/'.$sponsor->id)}}";
+                                                            window.location = "{{URL::to('/admin/slide/delete/'.$slide->id)}}";
                                                         /*});*/
                                                     });
                                                 });

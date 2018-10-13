@@ -55,6 +55,8 @@ Route::middleware('admin_gate:admin')->group(function() {
     });
     /* Dashboard and Terms */
     Route::get('/admin/index', 'Admin\DashboardController@DashboardView')->name('admin_dashboard');
+    Route::get('/admin/account_setting', 'Admin\AdminController@AccountSettingView')->name('admin_account_setting');
+    Route::post('/admin/account_setting', 'Admin\AdminController@AccountSettingProcess')->name('admin_account_setting_process');
     Route::get('/admin/term/add', 'Admin\DashboardController@TermAddView')->name('admin_term_add');
     Route::post('/admin/term/add', 'Admin\DashboardController@TermAddProcess')->name('admin_term_add_process');
     Route::get('/admin/term/edit/{period_id}', 'Admin\DashboardController@TermEditView')->name('admin_term_edit');
@@ -89,12 +91,19 @@ Route::middleware('admin_gate:admin')->group(function() {
     Route::post('/admin/logo/edit/{logo_id}', 'Admin\LogoController@LogoEditProcess')->name('admin_logo_edit_process');
     Route::get('/admin/logo/delete/{logo_id}', 'Admin\LogoController@LogoDeleteProcess')->name('admin_logo_delete_procecss');
     /* Sponsor */
-    Route::get('/admin/sponsors', 'Admin\SponsorController@SlideView')->name('admin_sponsor');
-    Route::get('/admin/sponsor/add', 'Admin\SponsorController@SlideAddView')->name('admin_sponsor_add');
-    Route::post('/admin/sponsor/add', 'Admin\SponsorController@SlideAddProcess')->name('admin_sponsor_add_process');
-    Route::get('/admin/sponsor/edit/{slide_id}', 'Admin\SponsorController@SlideEditView')->name('admin_sponsor_edit');
-    Route::post('/admin/sponsor/edit/{slide_id}', 'Admin\SponsorController@SlideEditProcess')->name('admin_sponsor_edit_process');
-    Route::get('/admin/sponsor/delete/{slide_id}', 'Admin\SponsorController@SlideDeleteProcess')->name('admin_sponsor_delete_procecss');
+    Route::get('/admin/sponsors', 'Admin\SponsorController@SponsorView')->name('admin_sponsor');
+    Route::get('/admin/sponsor/add', 'Admin\SponsorController@SponsorAddView')->name('admin_sponsor_add');
+    Route::post('/admin/sponsor/add', 'Admin\SponsorController@SponsorAddProcess')->name('admin_sponsor_add_process');
+    Route::get('/admin/sponsor/edit/{sponsor_id}', 'Admin\SponsorController@SponsorEditView')->name('admin_sponsor_edit');
+    Route::post('/admin/sponsor/edit/{sponsor_id}', 'Admin\SponsorController@SponsorEditProcess')->name('admin_sponsor_edit_process');
+    Route::get('/admin/sponsor/delete/{sponsor_id}', 'Admin\SponsorController@SponsorDeleteProcess')->name('admin_sponsor_delete_procecss');
+    /* Slide */
+    Route::get('/admin/slides', 'Admin\SlideController@SlideView')->name('admin_slide');
+    Route::get('/admin/slide/add', 'Admin\SlideController@SlideAddView')->name('admin_slide_add');
+    Route::post('/admin/slide/add', 'Admin\SlideController@SlideAddProcess')->name('admin_slide_add_process');
+    Route::get('/admin/slide/edit/{slide_id}', 'Admin\SlideController@SlideEditView')->name('admin_slide_edit');
+    Route::post('/admin/slide/edit/{slide_id}', 'Admin\SlideController@SlideEditProcess')->name('admin_slide_edit_process');
+    Route::get('/admin/slide/delete/{slide_id}', 'Admin\SlideController@SlideDeleteProcess')->name('admin_slide_delete_procecss');
     /* Title */
     Route::get('/admin/title', 'Admin\TitleController@TitleView')->name('admin_title');
     Route::get('/admin/title/edit/{title_id}', 'Admin\TitleController@TitleEditView')->name('admin_title_edit');

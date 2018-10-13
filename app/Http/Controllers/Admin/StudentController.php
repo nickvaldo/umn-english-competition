@@ -28,7 +28,8 @@ class StudentController extends Controller
     }
     // Display Student Add Page
     public function StudentAddView(Request $request, $term_id){
-      $students       = Student::SelectStudentByTermID($term_id);
+      $students           = Student::SelectStudentByTermID($term_id);
+      $institutions       = Institution::SelectInstitutionByTermID($term_id);
       $term               = Term::SelectTermByTermID($term_id);
       $educational_stage  = Educational_Stage::SelectEducationalStagesByEducationalSTageID($term->educational_stage_id);
       $identity_type_enum = $this->getEnumValues('students','identity_type');
@@ -37,8 +38,9 @@ class StudentController extends Controller
       return view('admin.student.add-edit',[
         'term_id'             => $term_id,
         'term'                => $term,
+        'institutions'        => $institutions,
         'educational_stage'   => $educational_stage,
-        'students'        => $students,
+        'students'            => $students,
         'identity_type_enum'  => $identity_type_enum,
         'gender_enum'         => $gender_enum,
         'student'             => (object)[], //Create NULL Object
@@ -50,11 +52,11 @@ class StudentController extends Controller
       if($request->has('add_student_admin')){
         // Validate Data
         $request->validate([
-          'student_id'  => 'required|exists:students,id',
+          'institution_id'  => 'required|exists:institutions,id',
           'identity_type'   => 'required',
           'identity_number' => 'required|max:25',
           'first_name'      => 'required|max:250',
-          'middle_name'     => 'required|max:250',
+          'middle_name'     => 'max:250',
           'last_name'       => 'required|max:250',
           'gender'          => 'required',
           'birth_place'     => 'required|max:250',
@@ -62,7 +64,7 @@ class StudentController extends Controller
           'address'         => 'required'
         ]);
         // Insert New Student Data
-        $student = Student::InsertStudent($request->student_id, $request->identity_type, $request->identity_number, $request->first_name, $request->middle_name, $request->last_name, $request->gender, $request->birth_place, $request->birth_date, $request->address);
+        $student = Student::InsertStudent($request->institution_id, $request->identity_type, $request->identity_number, $request->first_name, $request->middle_name, $request->last_name, $request->gender, $request->birth_place, $request->birth_date, $request->address);
 
         // Check Whether Student is Null or Not
         if($student != NULL)
@@ -78,7 +80,8 @@ class StudentController extends Controller
     }
     // Display Student Edit Page
     public function StudentEditView(Request $request, $term_id, $student_id){
-      $students       = Student::SelectStudentByTermID($term_id);
+      $students           = Student::SelectStudentByTermID($term_id);
+      $institutions       = Institution::SelectInstitutionByTermID($term_id);
       $term               = Term::SelectTermByTermID($term_id);
       $educational_stage  = Educational_Stage::SelectEducationalStagesByEducationalSTageID($term->educational_stage_id);
       $identity_type_enum = $this->getEnumValues('students','identity_type');
@@ -88,8 +91,9 @@ class StudentController extends Controller
       return view('admin.student.add-edit',[
         'term_id'             => $term_id,
         'term'                => $term,
+        'institutions'        => $institutions,
         'educational_stage'   => $educational_stage,
-        'students'        => $students,
+        'students'            => $students,
         'identity_type_enum'  => $identity_type_enum,
         'gender_enum'         => $gender_enum,
         'student'             => $students,
@@ -101,11 +105,11 @@ class StudentController extends Controller
       if($request->has('edit_student_admin')){
         // Validate Data
         $request->validate([
-          'student_id'  => 'required|exists:students,id',
+          'institution_id'  => 'required|exists:institutions,id',
           'identity_type'   => 'required',
           'identity_number' => 'required|max:25',
           'first_name'      => 'required|max:250',
-          'middle_name'     => 'required|max:250',
+          'middle_name'     => 'max:250',
           'last_name'       => 'required|max:250',
           'gender'          => 'required',
           'birth_place'     => 'required|max:250',
@@ -113,7 +117,7 @@ class StudentController extends Controller
           'address'         => 'required'
         ]);
         // Update Current Student Data
-        $student = Student::UpdateStudent($request->student_id, $request->identity_type, $request->identity_number, $request->first_name, $request->middle_name, $request->last_name, $request->gender, $request->birth_place, $request->birth_date, $request->address, $student_id);
+        $student = Student::UpdateStudent($request->institution_id, $request->identity_type, $request->identity_number, $request->first_name, $request->middle_name, $request->last_name, $request->gender, $request->birth_place, $request->birth_date, $request->address, $student_id);
 
         // Check Whether Student is Null or Not
         if($student != NULL)
