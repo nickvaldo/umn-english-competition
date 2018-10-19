@@ -73,7 +73,8 @@ class loginauth extends Controller
 									'term_id' => $user[0]->term_id,
 									'stage_id'=> $user[0]->educational_stage_id,
 									'ins_address'=> $user[0]->institution_address,
-									'institution_name'=> $user[0]->institution_name,
+                                    'institution_name'=> $user[0]->institution_name,
+                                    
 									]]);
 								return redirect()->route('user_random_process');
                             }

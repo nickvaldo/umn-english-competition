@@ -11,6 +11,7 @@ use DB;
 
 //Load Model
 use App\Http\Model\Institution\InstitutionModel as Institution;
+use App\Htpp\Model\Institution\StudentModel as Student;
 
 class AuthController extends Controller
 {
@@ -29,6 +30,7 @@ class AuthController extends Controller
         ]);
         //Retrieve Certain Data from Institution Table
         $user = Institution::SelectInstitutionByUsername($request->username);
+        
         //Check Whether Data is Available
         if($user){
             //Process When Data is Available
@@ -63,13 +65,21 @@ class AuthController extends Controller
                             //Check Wheter Inserting Data is Success
                             if($success){
                                 //Process When Success
+                                
+                                $test = DB::select('SELECT CONCAT(`first_name`, " ", `last_name`) AS full_name FROM `students` WHERE `institution_id`= ?', [$user->id]);
+                                
                                 //Create Admin Session
                                 session(['user' => [
 									'id'    => $user->id,
 									'username' => $user->username,
 									'team_name' => $user->team_name,
 									'term_id' => $user->term_id,
-									'stage_id'=> $user->educational_stage_id,
+                                    'stage_id'=> $user->educational_stage_id,
+                                    'institution_name'=> $user->institution_name,
+                                    'institution_address'=> $user->institution_address,
+                                    'students_name'=> $test,
+                                    'answered' => $user->answered,
+                                    'deleted' => $user->deleted,
 									]]);
 								return redirect()->route('user_random_process');
                             }

@@ -27,6 +27,7 @@ class InstitutionModel extends Model
                           'institutions.institution_name as institution_name',
                           'institutions.institution_address as institution_address',
                           'institutions.points as points',
+                          'institutions.answered as answered',
                           'institutions.created_at as created_at',
                           'institutions.updated_at as updated_at')
         ->join('terms', 'institutions.term_id', '=', 'terms.id')

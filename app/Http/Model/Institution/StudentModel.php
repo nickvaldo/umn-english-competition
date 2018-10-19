@@ -37,9 +37,15 @@ class StudentModel extends Model
         ->where('students.deleted', 0)
         ->orderBy('created_at', 'desc')->get();
     }
+
+    
     // Retrieve Student Data by Id
     public static function SelectStudentByID($student_id){
       return self::where('id',$student_id)->first();
+    }
+
+    public static function SelectStudentByInstID($institution_id){
+      return self::where('institution_id', $institution_id)->get();
     }
     // Create New Student Data
     public static function InsertStudent($institution_id, $identity_type, $identity_number, $first_name, $middle_name, $last_name, $gender, $birth_place, $birth_date, $address){

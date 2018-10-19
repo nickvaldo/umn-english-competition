@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Unicat</title>
+<title>Login</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Unicat project">
+<meta name="description" content="Accounting Week UMN">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap4/bootstrap.min.css')}}">
@@ -57,8 +57,8 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title_container text-center">
-						<h2 class="section_title">PRE ELIMINATION TEST</h2>
-						<h2 class="section_title">ACCOUNTING WEEK</h2>
+						<h2 class="section_title">{{$title->title}}</h2>
+						
 					</div>
 				</div>
 			</div>
@@ -67,12 +67,25 @@
 				<!-- Course -->
 				<div class="col-lg-4 course_col">
 					<div class="course">
-						<div class="course_image"><img src="{{url('images/gabungan.png')}}" alt=""></div>
+						
+						<div class="course_image">
+								<center>
+								<div style"margin: 20px 10px 0px 0px">	
+								@foreach($logos as $logo)
+								
+								<img style="margin: 20px 0px 0px 10px" src="{{URL::to($logo->image)}}" height="110px"alt="">
+								
+								@endforeach
+								</div>	
+								</center>
+						</div>
+						
 						<div class="course_body">
 						</div>
 						<div class="course_footer">
 							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 								<div class="col fill_height">
+								
 									<form action = "{{ URL::to('/login') }}" class="counter_form_content d-flex flex-column align-items-center justify-content-center" method="POST">
 										{{ csrf_field() }}
 										<div class="counter_form_title">Login</div>
@@ -90,6 +103,7 @@
 										@endif
 										<button type="submit" class="counter_form_button">Login</button>
 									</form>
+								
 								</div>
 							</div>
 						</div>
@@ -100,15 +114,12 @@
 						<div class="course_body">
 							<div class="home_slider_container">
 								<div class="owl-carousel owl-theme home_slider">
-									<div class="owl-item">
-										<div class="course_image"><img src="images/course_1.jpg" alt="" height="385"></div>
-									</div>
-									<div class="owl-item">
-										<div class="course_image"><img src="images/course_2.jpg" alt="" height="385"></div>
-									</div>
-									<div class="owl-item">
-										<div class="course_image"><img src="images/course_3.jpg" alt="" height="385"></div>
-									</div>
+										@foreach ($slides as $slide)
+									
+										<div class="owl-item">
+											<div class="course_image"><img src="{{URL::to($slide->image)}}" alt="" height="385"></div>
+										</div>
+										@endforeach
 								</div>
 							</div>
 							<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
@@ -122,27 +133,7 @@
 	
 	<!-- Footer -->
 
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
-		<div class="container">
-			<div class="row copyright_row">
-				<div class="col">
-					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
-						<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-						<div class="ml-lg-auto cr_links">
-							<ul class="cr_list">
-								<li><a href="#">Copyright notification</a></li>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	@extends('layout.institution.footer')
 </div>
 
 <script src="{{url('js/jquery-3.2.1.min.js')}}"></script>
