@@ -108,21 +108,13 @@
 						@endforeach
 						</div>	
 
-						<center><h1>{{$title->title}}</h1></center>
+						<center><h1>{{$dones->title}}</h1></center>
 
 				<br>
 
 				<br>
 
-				<center><h3>Terima kasih atas partisipasi anda.</h3>
-
-				<center><h3>Pengumuman 20 kelompok terbaik akan diumumkan via sosial media Accounting Week</h3>
-
-				<center><h3>dan dikontak oleh panitia.</h3>
-
-				<center><h3>Pukul 17.00 WIB</h3>
-
-				<center><h3>Good luck!</h3>
+				<?php echo($dones->description) ?>
 
 				</div>
 

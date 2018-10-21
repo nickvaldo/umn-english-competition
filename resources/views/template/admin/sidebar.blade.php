@@ -53,6 +53,7 @@
             <li> <a href="{{URL::to('/admin/slides')}}" class="waves-effect"><i class="fa fa-briefcase" style="margin-right: 0.7em"></i> <span class="hide-menu"> Slides </span></a> </li>
             <li> <a href="{{URL::to('/admin/title')}}" class="waves-effect"><i class="fa fa-pencil-square-o" style="margin-right: 0.7em"></i> <span class="hide-menu"> Title </span></a> </li>
             <li> <a href="{{URL::to('/admin/rule')}}" class="waves-effect"><i class="fa fa-exclamation-circle" style="margin-right: 0.7em"></i> <span class="hide-menu"> Rule </span></a> </li>
+            <li> <a href="{{URL::to('/admin/done')}}" class="waves-effect"><i class="fa fa-exclamation-circle" style="margin-right: 0.7em"></i> <span class="hide-menu"> Done Page </span></a> </li>
             <li class="nav-small-cap">--- Support</li>
             <!--<li><a href="documentation.html" class="waves-effect"><i class="fa fa-circle-o text-danger"></i> <span class="hide-menu">Documentation</span></a></li>
             <li><a href="gallery.html" class="waves-effect"><i class="fa fa-circle-o text-info"></i> <span class="hide-menu">Gallery</span></a></li>

@@ -10,6 +10,7 @@ use App\Http\Model\Admin\SlideModel as Slide;
 use App\Http\Model\Admin\TitleModel as Title;
 use App\Http\Model\Admin\RuleModel as Rule;
 use App\Http\Model\Admin\LogoModel as Logo;
+use App\Http\Model\Admin\DonePageModel as Done;
 use App\Http\Model\Admin\InstitutionModel as Institution;
 Class SponsorController extends Controller{
     public function compose(View $view){
@@ -18,8 +19,9 @@ Class SponsorController extends Controller{
         $slides = Slide::SelectSlide();
         $rule = Rule::SelectRule();
         $logos = Logo::SelectLogo();
-       
+        $dones = Done::SelectDone();
 
+        $view->withDones($dones);
         $view->withLogos($logos);
         $view->withRule($rule);
         $view->withSponsors($sponsors);
